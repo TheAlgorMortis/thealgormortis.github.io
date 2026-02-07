@@ -73,6 +73,7 @@ const catMap: Record<string, string> = {
   "university-projects": "University Projects",
   "non-tech-endeavors": "Non-tech Endeavors",
   "leadership-roles": "Leadership Roles",
+  employment: "Employment",
 };
 
 /************************

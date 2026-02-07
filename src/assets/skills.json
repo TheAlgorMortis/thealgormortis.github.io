@@ -79,6 +79,41 @@
   },
 
   "experience": {
+    "employment": [
+      { "name": "Computer Science 144 Head Project Demi",
+        "id":"demi-project",
+        "timeframe":"November 2025 - November 2026",
+        "brief": "Developing the project, its reference implementation, the specification, and test script / suite for the first year students at Stellenbosch University.",
+        "icon":"LATEX",
+        "points":[
+          {"text": "At the end of 2025, I began working with Prof Lynette van Zijl and later Prof van der Merwe in developing the Computer Science 144 semester project that the first year computer science students will receive during the module in their second semester."},
+          {"text": "The students will be required to implement a python program, the nature thereof I will share here when I am permitted. I was tasked with designing a project suitable for the skill level of first years that focused on Object Oriented Programming principles. I had to design a unique project that students could not simply download a solution for."},
+          {
+            "text": "As part of this process, I developed a full implementation of the project, called the Oracle, which acted as the true, 'correct' solution of the project. The Oracle was used to develop the test suite, so that the outputs would exactly match that of what the program was meant to generate."
+          },
+          {
+            "text": "I also wrote a marking script that would automatically mark all student submissions, as the students' code was specified to behave deterministically. This script will mark student submissions by running their solution through test suites applicable to the given submission, and give them a mark determined by a weighted sum of their pass rate in each test-case category."
+          },
+          {"text":"This marking script also acts as a tool that students can use to check their own code before submission, with the incomplete test-suite."
+          },
+          {
+            "text":"I wrote the student specification for the project in LaTeX, as required by the professors, that strictly detailed what the students were to implement."
+          },
+          {
+            "text":"In the second semester of 2026, I will be tasked with running the project, which will entail running Q&A sessions, answering student query emails, resolving issues, and handling the project-marking (using the marking script) on a weekly basis."
+          },
+          {
+            "text":"Overall, this project has given me some great Software Engineering practice, as I've learned to work with clients (the professors), write a formal specification, spend a large amout of correctness testing (Both for the Oracle and the students' implementaion), and conform to time constraints. It has also been the most significant engineering project that I have done with high stakes that are not just about University marks."
+          },
+          {"text":"I am looking forward to the latter half of the year, where I will have the honour of running this project for a couple hundred students."}
+        ]
+      },
+      { "name": "Computer Science 315 Demi",
+        "id":"demi-ml",
+        "timeframe":"February - June 2026",
+        "brief": "General Demi for the CS315 Machine Learning module at Stellenbosch University, where I assist students during weekly tutorials, and invigilate students during assignment tests at exams.",
+        "icon":"ML"
+      }],
     "personal-tech-experience": [
       { "name": "SUDS Hackathon Winners",
         "id":"suds-hackathon",

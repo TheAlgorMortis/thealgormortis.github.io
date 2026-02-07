@@ -55,8 +55,7 @@ export default function Home() {
         </h2>
         <p>
           Use the navigation tab above to check my Education and
-          Skills/Experience. You can also visit the blog page to hear my
-          thoughts on things.
+          Skills/Experience.
         </p>
       </div>
       <div className="sectionBlock">

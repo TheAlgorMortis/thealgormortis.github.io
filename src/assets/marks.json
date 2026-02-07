@@ -30,6 +30,14 @@
 	 {"id": 23, "name": "CompSci 344 (Software Engineering)", "mark": "76%", "icon":"SE"},
 	 {"id": 24, "name": "CompSci 345 (Automata and Computability)", "mark": "95%","icon":"AUTO"},
 	 {"id": 35, "name": "Applied Maths 364 (Fourier Analysis)", "mark":"75%","icon":"FOU"}],
+"Honours1":
+	[{"id":40, "name": "712: Advanced Algorithms", "mark": "TBC", "icon":"AA"},
+	{"id":41, "name": "795: Functional Programming", "mark": "TBC", "icon":"FP"},
+	{"id":42, "name": "716: Vulnerability discovery and exploitation", "mark": "TBC", "icon":"VDE"}],
+"Honours2":
+	[{"id":43, "name": "745: Compilers", "mark": "TBC", "icon":"PILER"},
+	{"id":44, "name": "771: Principles of Data Science", "mark": "TBC", "icon":"MS"},
+	{"id":45, "name": "792: Computer Vision", "mark": "TBC", "icon":"CV"}],
 "NSC":
 	[{"id": 101, "name": "English Home Language", "mark": "89%","icon":"ENG"},
 	 {"id": 102, "name": "Afrikaans First Additional language", "mark": "86%","icon":"AFR"},

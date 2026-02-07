@@ -14,6 +14,7 @@ import { PiVectorTwoFill } from "react-icons/pi";
 import { MdOutlineScience } from "react-icons/md";
 import { FaJava } from "react-icons/fa";
 import { TbMatrix } from "react-icons/tb";
+import { IoEyeSharp } from "react-icons/io5";
 import {
   SiNeovim,
   SiJupyter,
@@ -32,6 +33,10 @@ import { FaPenAlt } from "react-icons/fa";
 import { GiAfrica } from "react-icons/gi";
 import { FaDna } from "react-icons/fa6";
 import { FaFileDownload } from "react-icons/fa";
+import { SiHaskell } from "react-icons/si";
+import { FaGear } from "react-icons/fa6";
+import { FaLock } from "react-icons/fa";
+import { LuCodeXml } from "react-icons/lu";
 
 /* Icon map for marks */
 const componentMap = {
@@ -61,6 +66,11 @@ const componentMap = {
   LO: FaHeart,
   IT: SiDelphi,
   BIO: FaDna,
+  CV: IoEyeSharp,
+  FP: SiHaskell,
+  PILER: FaGear,
+  VDE: FaLock,
+  AA: LuCodeXml,
 };
 
 /* Marks type */
@@ -83,37 +93,6 @@ export default function Education() {
       <h3 className="sectionSubHeading">
         University <FaUniversity />
       </h3>
-      <div className="sectionBlock">
-        <h4 className="sectionBlockHeading">University Experience</h4>
-        <p>
-          I currently hold a BSc Computer science (cum laude) from Stellenbosch
-          university. In 2026 I am studying my Honours in Computer Science.
-          Throughout my bachelors, I learned many skills that can be viewed on
-          the Skills/Experience section of the website. Below I list the modules
-          that I have done during the course, and their respective marks.
-        </p>
-        <p>
-          During my studies, I was awarded a full cost scholarship by Investec
-          Bank for my high academic achievement, allowing me to continue my
-          studies from my second year onwards. After finishing my honours year,
-          I will also be working for them.
-        </p>
-      </div>
-      <UniMarksPanel
-        year={"3"}
-        marks1={fullMarks.year3sem1}
-        marks2={fullMarks.year3sem2}
-      />
-      <UniMarksPanel
-        year={"2"}
-        marks1={fullMarks.year2sem1}
-        marks2={fullMarks.year2sem2}
-      />
-      <UniMarksPanel
-        year={"1"}
-        marks1={fullMarks.year1sem1}
-        marks2={fullMarks.year1sem2}
-      />
       <a
         className="outerButton"
         href="./AcademicRecord.pdf"
@@ -130,6 +109,80 @@ export default function Education() {
         </h2>
         <h2> Download my BSc Certificate </h2>
       </a>
+      <div className="sectionBlock">
+        <h4 className="sectionBlockHeading">BSc (Hons) Computer Science</h4>
+        <p>
+          In 2026, I am studying my honours in Computer Science at Stellenbosch
+          University. I am being funded through the Investec Tech Scholarship,
+          as I was during the latter two years of my undergraduate degree.
+        </p>
+        <p>
+          In my honours year, I will be doing a year-long Software Engineering
+          project under the Supervision of Professor Lynette can Zijl. In this
+          project, I will be using Computer Vision to scan images of LEGO
+          instruction manuals, then generate animations of the LEGO set
+          construction in Unity.
+        </p>
+        <p>
+          This year, I will be working as a head project demi for a first year
+          computer science, as well as a general demi for a third year machine
+          learning module. Click the links below for more details on this.
+          <div>
+            <a
+              href="http://localhost:5173/skills/experience/employment/demi-project"
+              className="outerButton"
+            >
+              Project Demi Experience
+            </a>
+          </div>
+          <div>
+            <a
+              href="http://localhost:5173/skills/experience/employment/demi-ml"
+              className="outerButton"
+            >
+              Machine Learning Demi Experience
+            </a>
+          </div>
+        </p>
+      </div>
+      <UniMarksPanel
+        year={"Honours Modules"}
+        marks1={fullMarks.Honours1}
+        marks2={fullMarks.Honours2}
+      />
+      <div className="sectionBlock">
+        <h4 className="sectionBlockHeading">
+          BSc Computer Science (cum laude)
+        </h4>
+        <p>
+          I currently hold a BSc Computer science (cum laude) from Stellenbosch
+          university. Throughout my bachelors, I learned many skills that can be
+          viewed on the Skills/Experience section of the website. Below I list
+          the modules that I have done during the course, and their respective
+          marks.
+        </p>
+        <p>
+          During my studies, I was awarded a full cost scholarship by Investec
+          Bank for my high academic achievement, allowing me to continue my
+          studies from my second year onwards. After finishing my honours year,
+          I will also be working for them.
+        </p>
+      </div>
+      <UniMarksPanel
+        year={"3rd Year"}
+        marks1={fullMarks.year3sem1}
+        marks2={fullMarks.year3sem2}
+      />
+      <UniMarksPanel
+        year={"2nd Year"}
+        marks1={fullMarks.year2sem1}
+        marks2={fullMarks.year2sem2}
+      />
+      <UniMarksPanel
+        year={"1st Year"}
+        marks1={fullMarks.year1sem1}
+        marks2={fullMarks.year1sem2}
+      />
       <h3 className="sectionSubHeading">
         High School <BiSolidBusSchool />
       </h3>
@@ -170,7 +223,7 @@ type UniMarksPanelProps = {
 function UniMarksPanel({ year, marks1, marks2 }: UniMarksPanelProps) {
   return (
     <div className="sectionBlock">
-      <h3 className="sectionBlockHeading"> Year {year}</h3>
+      <h3 className="sectionBlockHeading"> {year}</h3>
       <div className="semesterGroup">
         <SemesterMarksPanel number={"1"} marks={marks1} />
         <SemesterMarksPanel number={"2"} marks={marks2} />
