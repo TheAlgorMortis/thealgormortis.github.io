@@ -15,6 +15,7 @@ import { MdOutlineScience } from "react-icons/md";
 import { FaJava } from "react-icons/fa";
 import { TbMatrix } from "react-icons/tb";
 import { IoEyeSharp } from "react-icons/io5";
+import { SiTmux } from "react-icons/si";
 import {
   SiNeovim,
   SiJupyter,
@@ -87,30 +88,11 @@ type Marks = {
 export default function Education() {
   return (
     <>
-      <h2 className="sectionHeading">
-        Education <HiAcademicCap />
-      </h2>
-      <h3 className="sectionSubHeading">
+      <h1 className="sectionHeading">
         University <FaUniversity />
-      </h3>
-      <a
-        className="outerButton"
-        href="./AcademicRecord.pdf"
-        download="Academic-Record-Dylan-Reid"
-      >
-        <h2>
-          <FaFileDownload />
-        </h2>
-        <h2> Download my Academic Record </h2>
-      </a>
-      <a className="outerButton" href="./BSC.pdf" download="BSC-Dylan-Reid">
-        <h2>
-          <FaFileDownload />
-        </h2>
-        <h2> Download my BSc Certificate </h2>
-      </a>
+      </h1>
       <div className="sectionBlock">
-        <h4 className="sectionBlockHeading">BSc (Hons) Computer Science</h4>
+        <h2 className="sectionBlockHeading">BSc (Hons) Computer Science</h2>
         <p>
           In 2026, I am studying my honours in Computer Science at Stellenbosch
           University. I am being funded through the Investec Tech Scholarship,
@@ -127,23 +109,21 @@ export default function Education() {
           This year, I will be working as a head project demi for a first year
           computer science, as well as a general demi for a third year machine
           learning module. Click the links below for more details on this.
-          <div>
-            <a
-              href="http://localhost:5173/skills/experience/employment/demi-project"
-              className="outerButton"
-            >
-              Project Demi Experience
-            </a>
-          </div>
-          <div>
-            <a
-              href="http://localhost:5173/skills/experience/employment/demi-ml"
-              className="outerButton"
-            >
-              Machine Learning Demi Experience
-            </a>
-          </div>
         </p>
+        <div className="flexRow">
+          <a
+            href="http://localhost:5173/skills/experience/employment/demi-project"
+            className="outerButton"
+          >
+            Project Demi Experience
+          </a>
+          <a
+            href="http://localhost:5173/skills/experience/employment/demi-ml"
+            className="outerButton"
+          >
+            Machine Learning Demi Experience
+          </a>
+        </div>
       </div>
       <UniMarksPanel
         year={"Honours Modules"}
@@ -151,9 +131,9 @@ export default function Education() {
         marks2={fullMarks.Honours2}
       />
       <div className="sectionBlock">
-        <h4 className="sectionBlockHeading">
+        <h2 className="sectionBlockHeading">
           BSc Computer Science (cum laude)
-        </h4>
+        </h2>
         <p>
           I currently hold a BSc Computer science (cum laude) from Stellenbosch
           university. Throughout my bachelors, I learned many skills that can be
@@ -167,6 +147,24 @@ export default function Education() {
           studies from my second year onwards. After finishing my honours year,
           I will also be working for them.
         </p>
+        <div className="flexRow">
+          <a
+            className="outerButton flexRow"
+            href="./AcademicRecord.pdf"
+            download="Academic-Record-Dylan-Reid"
+          >
+            <FaFileDownload />
+            Download my Academic Record{" "}
+          </a>
+          <a
+            className="outerButton flexRow"
+            href="./BSC.pdf"
+            download="BSC-Dylan-Reid"
+          >
+            <FaFileDownload />
+            Download my BSc Certificate{" "}
+          </a>
+        </div>
       </div>
       <UniMarksPanel
         year={"3rd Year"}
@@ -183,11 +181,11 @@ export default function Education() {
         marks1={fullMarks.year1sem1}
         marks2={fullMarks.year1sem2}
       />
-      <h3 className="sectionSubHeading">
+      <h1 className="sectionHeading">
         High School <BiSolidBusSchool />
-      </h3>
+      </h1>
       <div className="sectionBlock">
-        <h4 className="sectionBlockHeading">School Experience</h4>
+        <h2 className="sectionBlockHeading">School Experience</h2>
         <p>
           I attended Fairmont High School, where I was first exposed to software
           development through Information Technology. From then, I always knew I
@@ -198,13 +196,11 @@ export default function Education() {
           88,4%. I was awarded academic honours in Gr 12 and 11, and academic
           colours in Gr 10. My marks are shown below.
         </p>
-      </div>
-      <a className="outerButton" href="./NSC.pdf" download="NSC-Dylan-Reid">
-        <h2>
+        <a className="outerButton" href="./NSC.pdf" download="NSC-Dylan-Reid">
           <FaFileDownload />
-        </h2>
-        <h2> Download my NSC </h2>
-      </a>
+          Download my NSC{" "}
+        </a>
+      </div>
       <NscMarks marks={fullMarks.NSC} />
     </>
   );
@@ -223,7 +219,7 @@ type UniMarksPanelProps = {
 function UniMarksPanel({ year, marks1, marks2 }: UniMarksPanelProps) {
   return (
     <div className="sectionBlock">
-      <h3 className="sectionBlockHeading"> {year}</h3>
+      <h2 className="sectionBlockHeading"> {year}</h2>
       <div className="semesterGroup">
         <SemesterMarksPanel number={"1"} marks={marks1} />
         <SemesterMarksPanel number={"2"} marks={marks2} />
@@ -244,7 +240,7 @@ type SemesterMarksPanelProps = {
 function SemesterMarksPanel({ number, marks }: SemesterMarksPanelProps) {
   return (
     <div className="semester">
-      <h4>Semester {number}</h4>
+      <h3 className="sectionBlockHeading">Semester {number}</h3>
       <MarksMap marks={marks} />
     </div>
   );
@@ -256,7 +252,7 @@ function SemesterMarksPanel({ number, marks }: SemesterMarksPanelProps) {
 function NscMarks({ marks }: MarksMapProps) {
   return (
     <div className="sectionBlock">
-      <h3 className="sectionBlockHeading">NSC Final Marks</h3>
+      <h2 className="sectionBlockHeading">NSC Final Marks</h2>
       <div className="semester">
         <MarksMap marks={marks} />
       </div>
@@ -282,7 +278,7 @@ function MarksMap({ marks }: MarksMapProps) {
             key={mark.id}
             style={{ display: "flex", justifyContent: "space-between" }}
           >
-            <span>
+            <span className="flexRow">
               {Icon && <Icon />} &nbsp; {mark.name}
             </span>
             <span>({mark.mark})</span>

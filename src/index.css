@@ -6,47 +6,179 @@
   box-sizing: border-box;
 }
 
-/* Dark mode colours */
+/* =========================================
+   Theme variables
+   - Colour palette is driven by Bodies.css + Header.css
+========================================= */
 :root {
-  --bg-color: rgba(0, 0, 10, 0.85);
-  --fg-color: #ddddff;
-  --fg-hover: #000000;
+  /* Typography */
+  --font-sans:
+    "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  --line-height: 1.55;
+
+  /* Shadows (subtle glass depth) */
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.28);
+  --shadow-mid: 0 10px 25px rgba(0, 0, 0, 0.38);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(106, 140, 255, 0.45);
+
+  /* Radii */
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.8rem;
+
+  /* =========================================
+     Core colours (used by Bodies.css + Header.css)
+  ========================================= */
+  /* Surfaces */
+  --bg-black: rgba(0, 0, 10, 0.85);
+  --bg-h1: rgba(15, 100, 147, 0.8);
+  --bg-sec-block-heading: rgba(37, 25, 96, 1);
+  --section-subheading: #251960;
+
+  /* Buttons */
+  --bg-btn: #ff0047;
+  --btn-hover: #990099;
+
+  /* Borders */
+  --border-blue: #0075a9;
+  --border-h1: #ffffff;
+  --border-btn: #650044;
   --border-color: #0040a7;
   --btn-border: #00a0a7;
-  --btn-color: #3040a7;
-  --btn-hover: #990099;
+
+  /* Text */
+  --fg-color: #eeddee;
+  --fg-hover: #000000;
+
+  /* Nav + tags */
   --nav-selected: #480065;
   --nav-btn-color: #251960;
-  --section-heading: #480065;
-  --section-subheading: #251960;
-  --skill-color: #120535;
+
+  /* =========================================
+     Raw colour tokens (all literal colours from Bodies.css)
+     (used for glass overlays, glows, gradients, etc.)
+  ========================================= */
+  --c-transparent: rgba(0, 0, 0, 0);
+
+  --c-black-18: rgba(0, 0, 0, 0.18);
+  --c-black-22: rgba(0, 0, 0, 0.22);
+  --c-black-25: rgba(0, 0, 0, 0.25);
+  --c-black-30: rgba(0, 0, 0, 0.3);
+  --c-black-35: rgba(0, 0, 0, 0.35);
+  --c-black-40: rgba(0, 0, 0, 0.4);
+  --c-black-62: rgba(0, 0, 0, 0.62);
+  --c-black-82: rgba(0, 0, 0, 0.82);
+
+  --c-white-10: rgba(255, 255, 255, 0.1);
+  --c-white-12: rgba(255, 255, 255, 0.12);
+  --c-white-18: rgba(255, 255, 255, 0.18);
+  --c-white-40: rgba(255, 255, 255, 0.4);
+
+  --c-blue-90: rgba(0, 0, 255, 0.9);
+
+  --c-cyan-18: rgba(0, 217, 255, 0.18);
+  --c-cyan-35: rgba(0, 217, 255, 0.35);
+  --c-cyan-45: rgba(0, 217, 255, 0.45);
+  --c-cyan-70: rgba(0, 217, 255, 0.7);
+
+  --c-magenta-10: rgba(255, 0, 255, 0.1);
+  --c-magenta-22: rgba(255, 0, 255, 0.22);
+  --c-magenta-35: rgba(255, 0, 255, 0.35);
 }
 
-/** Light mode colours */
+/* =========================================
+   Light theme override
+   (same variable names; different values)
+========================================= */
 :root.light {
-  /* --bg-color: #09f; */
-  --bg-color: rgba(0, 253, 255, 0.85);
-  --fg-color: #000000;
-  --fg-hover: #ffffff;
+  --bg-black: rgba(255, 255, 255, 0.86);
+  --bg-h1: rgba(0, 150, 255, 0.8);
+  --bg-sec-block-heading: rgba(153, 102, 255, 0.85);
+  --section-subheading: rgba(0, 150, 255, 0.8);
+
+  --bg-btn: #ff9f00;
+  --btn-hover: #ffff00;
+
+  --border-blue: #00a0a7;
+  --border-h1: #000000;
+  --border-btn: #b90000;
   --border-color: #990099;
   --btn-border: #b90000;
-  --btn-color: #ff9f00;
-  --btn-hover: #ffff00;
+
+  --fg-color: #000000;
+  --fg-hover: #ffffff;
+
   --nav-selected: #9966ff;
   --nav-btn-color: #00f0ff;
-  /* opacity with #9966ff; */
-  --section-heading: rgba(153, 102, 255, 0.8);
-  --section-subheading: rgba(00, 150, 255, 0.8);
-  --skill-color: rgba(253, 00, 253, 0.6);
+
+  /* Keep the raw tokens sensible in light mode */
+  --c-transparent: rgba(0, 0, 0, 0);
+
+  --c-black-18: rgba(0, 0, 0, 0.18);
+  --c-black-22: rgba(0, 0, 0, 0.22);
+  --c-black-25: rgba(0, 0, 0, 0.25);
+  --c-black-30: rgba(0, 0, 0, 0.3);
+  --c-black-35: rgba(0, 0, 0, 0.35);
+  --c-black-40: rgba(0, 0, 0, 0.4);
+  --c-black-62: rgba(0, 0, 0, 0.62);
+  --c-black-82: rgba(0, 0, 0, 0.82);
+
+  --c-white-10: rgba(255, 255, 255, 0.1);
+  --c-white-12: rgba(255, 255, 255, 0.12);
+  --c-white-18: rgba(255, 255, 255, 0.18);
+  --c-white-40: rgba(255, 255, 255, 0.4);
+
+  --c-blue-90: rgba(0, 0, 255, 0.9);
+
+  --c-cyan-18: rgba(0, 217, 255, 0.18);
+  --c-cyan-35: rgba(0, 217, 255, 0.35);
+  --c-cyan-45: rgba(0, 217, 255, 0.45);
+  --c-cyan-70: rgba(0, 217, 255, 0.7);
+
+  --c-magenta-10: rgba(255, 0, 255, 0.1);
+  --c-magenta-22: rgba(255, 0, 255, 0.22);
+  --c-magenta-35: rgba(255, 0, 255, 0.35);
 }
 
+/* =========================================
+   Base element styles
+========================================= */
 html {
-  font-size: 100%;
+  font-size: 90%;
   scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-sans);
   line-height: var(--line-height);
-  background-color: var(--color-bg);
+  background-color: var(--bg-black);
+}
+
+h2,
+h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.4rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h4,
+h5 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+div {
+  color: white;
 }

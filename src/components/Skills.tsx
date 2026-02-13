@@ -1,42 +1,88 @@
 import skillsData from "../assets/skills.json";
-const skills = skillsData as any;
 import "./Bodies.css";
-import { useParams, useNavigate } from "react-router-dom";
 
-/* icon import for skills */
-import { FaPython } from "react-icons/fa";
-import { FaJava } from "react-icons/fa";
+import React, { useEffect, useMemo } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { FaBrain } from "react-icons/fa6";
+import { IoMdSchool } from "react-icons/io";
+import { AiOutlineOpenAI } from "react-icons/ai";
+
+/* react-icons */
 import {
-  SiNeovim,
-  SiJupyter,
-  SiDelphi,
-  SiRstudioide,
+  FaPython,
+  FaJava,
+  FaHandshake,
+  FaArrowRight,
+  FaClock,
+  FaVideo,
+  FaChevronLeft,
+  FaChevronRight,
+  FaRecycle,
+} from "react-icons/fa";
+import { SiTmux } from "react-icons/si";
+import {
+  FaGitAlt,
+  FaXmark,
+  FaPiggyBank,
+  FaTaxi,
+  FaBook,
+  FaEarthAfrica,
+  FaNewspaper,
+} from "react-icons/fa6";
+import {
   SiTypescript,
+  SiJupyter,
+  SiGodotengine,
+  SiAseprite,
+  SiLatex,
 } from "react-icons/si";
-import { SiGodotengine } from "react-icons/si";
-import { FaGitAlt } from "react-icons/fa6";
-import { RiTeamFill } from "react-icons/ri";
-import { FaArrowRight } from "react-icons/fa";
-import { FaHandshake } from "react-icons/fa";
-import { GiBrain } from "react-icons/gi";
+import { RiTeamFill, RiTerminalBoxFill } from "react-icons/ri";
+import { GiBrain, GiCaptainHatProfile, GiAcorn } from "react-icons/gi";
 import { GrResources } from "react-icons/gr";
-import { GiCaptainHatProfile } from "react-icons/gi";
-import { FaPiggyBank } from "react-icons/fa6";
-import { FaTaxi } from "react-icons/fa";
-import { FaBook } from "react-icons/fa6";
 import { MdMovieCreation } from "react-icons/md";
 import { BiSolidChess } from "react-icons/bi";
-import { FaEarthAfrica } from "react-icons/fa6";
-import { FaNewspaper } from "react-icons/fa6";
-import { FaRecycle } from "react-icons/fa";
-import { RiTerminalBoxFill } from "react-icons/ri";
-import { FaClock } from "react-icons/fa";
-import { SiAseprite } from "react-icons/si";
-import { FaVideo } from "react-icons/fa";
 import { VscSnake } from "react-icons/vsc";
 
-/* Icon map for skills */
-const componentMap: Record<any, any> = {
+/* ---------- Types ---------- */
+
+type UsedInRef = { category: string; id: string };
+
+type PointLink = { name: string; link: string; icon?: string };
+type PointText = { text: string };
+type PointImage = { src: string; caption?: string };
+type Point = PointLink | PointText | PointImage;
+
+type SkillItem = {
+  name: string;
+  id: string;
+  icon?: string;
+  timeframe?: string;
+  brief?: string;
+  points?: Point[];
+  usedIn?: UsedInRef[];
+};
+
+type ExperienceItem = {
+  name: string;
+  id: string;
+  icon?: string;
+  timeframe?: string;
+  brief?: string;
+  points?: Point[];
+};
+
+type SkillsJson = {
+  skills: Record<string, SkillItem[]>;
+  experience: Record<string, ExperienceItem[]>;
+};
+
+type Params = { category?: string; detail?: string };
+
+const skills = skillsData as SkillsJson;
+
+/* ---------- Icon map ---------- */
+
+const componentMap: Record<string, React.ComponentType<any>> = {
   PYTHON: FaPython,
   JAVA: FaJava,
   TS: SiTypescript,
@@ -49,6 +95,10 @@ const componentMap: Record<any, any> = {
   INCL: FaHandshake,
   RESOURCE: GrResources,
   LEADERSHIP: GiCaptainHatProfile,
+  TM: FaClock,
+  PIX: SiAseprite,
+  VIDEO: FaVideo,
+  TMUX: SiTmux,
   INVEST: FaPiggyBank,
   TAXI: FaTaxi,
   BOOK: FaBook,
@@ -58,335 +108,615 @@ const componentMap: Record<any, any> = {
   WILDLIFE: FaEarthAfrica,
   MEDIA: FaNewspaper,
   ART: FaRecycle,
-  TM: FaClock,
-  PIX: SiAseprite,
-  MOV: FaVideo,
   SNAKE: VscSnake,
+  LATEX: SiLatex,
+  NUT: GiAcorn,
+  BRAIN: FaBrain,
+  DEMI: IoMdSchool,
+  AI: AiOutlineOpenAI,
 };
 
-/* Map for heading for skill and experience categories, primarily because I
- * didn't factor it into the json file */
+function getIcon(iconKey?: string) {
+  if (!iconKey) return null;
+  return componentMap[iconKey] ?? null;
+}
+
+/* ---------- Category display names ---------- */
+
 const catMap: Record<string, string> = {
-  technical: "Technical Skills",
+  // skills
+  languages: "Languages",
+  web_mobile: "Web & Mobile",
+  tooling_workflow: "Tooling & Workflow",
+  data_ml: "Data & ML",
+  gamedev_creative: "Game Dev & Creative",
   soft: "Soft Skills",
-  "personal-tech-experience": "Personal Tech Experience",
-  "university-projects": "University Projects",
-  "non-tech-endeavors": "Non-tech Endeavors",
-  "leadership-roles": "Leadership Roles",
-  employment: "Employment",
+
+  // experience
+  teaching_assistant: "Teaching Assistant",
+  hackathons_competitions: "Hackathons & Competitions",
+  scholarships_mentorship: "Scholarships & Mentorship",
+  projects_personal: "Personal Projects",
+  projects_university: "University Projects",
+  creative_nontech: "Creative / Non-tech",
+  leadership_community: "Leadership & Community",
 };
 
-/************************
- * Setting up skill types
- ***********************/
+function titleCaseWords(s: string) {
+  return s
+    .split(" ")
+    .filter(Boolean)
+    .map((w) => (w.length ? w[0].toUpperCase() + w.slice(1) : w))
+    .join(" ");
+}
 
-/**
- * Skills as displayed on the Skills and Experience page.
- */
-type SkillItem = {
-  name: string;
-  id?: string;
-  icon?: string;
-  timeframe?: string;
-  brief?: string;
-  points?: Point[];
-};
+function prettyCategoryKey(key: string) {
+  const cleaned = key.replaceAll("_", " ").replaceAll("-", " ");
+  return titleCaseWords(cleaned);
+}
 
-/* Point type in a skill (can be Link, text, or Image) */
-type Point = PointLink | PointText | PointImage;
+function displayCategory(key: string) {
+  return catMap[key] ?? prettyCategoryKey(key);
+}
 
-/* Link point in a skill */
-type PointLink = {
-  name: string;
-  link: string;
-  icon?: string;
-};
+/* ---------- Point type guards ---------- */
 
-/* Text point in a Skill */
-type PointText = {
-  text: string;
-};
-
-/** Image point in a Skill */
-type PointImage = {
-  src: string;
-  caption?: string;
-};
-
-/* Check if p is a PointLink */
 function isPointLink(p: Point): p is PointLink {
-  return "link" in p;
+  return (p as any).link !== undefined;
 }
-/* Check if p is a PointText */
 function isPointText(p: Point): p is PointText {
-  return "text" in p;
+  return (p as any).text !== undefined;
 }
-/* Cehck if p is a PointImage */
 function isPointImage(p: Point): p is PointImage {
-  return "src" in p;
+  return (p as any).src !== undefined;
 }
 
-/*********************************
- * Setting up React Router things
- ********************************/
-
-type Params = { category?: string; detail?: string };
-
-/**********************************
- * Over-arching skills component
- *********************************/
+/* ---------- UX helpers ---------- */
 
 /**
- * The skills component
+ * IMPORTANT: Only call this ONCE (in the parent).
+ * If you call it again inside each modal, you can end up "stuck" with no scrolling.
  */
-export default function Skills() {
-  // Category and detail, if any.
-  const { category, detail } = useParams<Params>();
+function useLockBodyScroll(locked: boolean) {
+  useEffect(() => {
+    if (!locked) return;
 
-  // Determine which tab we're in based on the URL
-  const tab = location.pathname.includes("/experience")
+    const prevOverflow = document.body.style.overflow;
+    const prevPaddingRight = document.body.style.paddingRight;
+
+    // avoid layout shift when scrollbar disappears
+    const scrollBarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    document.body.style.overflow = "hidden";
+    if (scrollBarWidth > 0)
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.body.style.paddingRight = prevPaddingRight;
+    };
+  }, [locked]);
+}
+
+function useCloseOnEscape(open: boolean, onClose: () => void) {
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open, onClose]);
+}
+
+function scrollTop() {
+  const scroller = document.querySelector(".body");
+  scroller?.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ---------- Build maps from skills.usedIn ---------- */
+
+function buildSkillsByExperience(data: SkillsJson) {
+  const map = new Map<string, SkillItem[]>();
+
+  Object.keys(data.skills ?? {}).forEach((skillCat) => {
+    (data.skills[skillCat] ?? []).forEach((sk) => {
+      (sk.usedIn ?? []).forEach((ref) => {
+        const key = `${ref.category}:${ref.id}`;
+        const arr = map.get(key) ?? [];
+        if (!arr.some((x) => x.id === sk.id)) arr.push(sk);
+        map.set(key, arr);
+      });
+    });
+  });
+
+  map.forEach((arr, k) => {
+    arr.sort((a, b) => a.name.localeCompare(b.name));
+    map.set(k, arr);
+  });
+
+  return map;
+}
+
+function buildExperienceIndex(data: SkillsJson) {
+  const idx = new Map<string, ExperienceItem>();
+  Object.keys(data.experience ?? {}).forEach((cat) => {
+    (data.experience[cat] ?? []).forEach((e) => {
+      idx.set(`${cat}:${e.id}`, e);
+    });
+  });
+  return idx;
+}
+
+/* =======================================================================
+   Main component
+======================================================================= */
+
+export default function Skills() {
+  const { category: categoryParam, detail } = useParams<Params>();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const tab: "skills" | "experience" = location.pathname.includes("/experience")
     ? "experience"
     : "skills";
 
-  // Navigate
-  const navigate = useNavigate();
+  const categories = Object.keys((skills as any)?.[tab] ?? {});
+  const category =
+    categoryParam && categories.includes(categoryParam)
+      ? categoryParam
+      : categories[0];
 
-  /*
-   * Control bar that displays whether you're currently on skills and
-   * experience, and gives you a button to switch between the two.
-   *
-   * @param tab The current tab type (experience or skill)
-   */
-  const getControlBar = (tab: string) => {
-    //
-    if (tab == "experience") {
-      return (
-        <div>
-          <h2 className="sectionHeading"> Experience </h2>
-          <button
-            className="outerButton"
-            onClick={() => navigate("/skills/skills/technical")}
-          >
-            Switch to Skills
-          </button>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <h2 className="sectionHeading"> Skills </h2>
-          <button
-            className="outerButton"
-            onClick={() =>
-              navigate("/skills/experience/personal-tech-experience")
-            }
-          >
-            Switch to Experience
-          </button>
-        </div>
-      );
-    }
+  const list: Array<SkillItem | ExperienceItem> = ((skills as any)?.[tab]?.[
+    category
+  ] ?? []) as any[];
+
+  const isModalOpen = Boolean(detail);
+
+  // Body scroll lock only here (parent)
+  useLockBodyScroll(isModalOpen);
+  useCloseOnEscape(isModalOpen, () => navigate(-1));
+
+  const experienceIndex = useMemo(() => buildExperienceIndex(skills), []);
+  const skillsByExperience = useMemo(() => buildSkillsByExperience(skills), []);
+
+  // Mobile prev/next category
+  const activeIndex = Math.max(0, categories.indexOf(category));
+  const prevCategory = categories.length
+    ? categories[(activeIndex - 1 + categories.length) % categories.length]
+    : category;
+  const nextCategory = categories.length
+    ? categories[(activeIndex + 1) % categories.length]
+    : category;
+
+  const selectedEntry = useMemo(() => {
+    if (!detail) return null;
+    return (list as any[]).find((x) => x.id === detail) ?? null;
+  }, [detail, list]);
+
+  const switchTarget =
+    tab === "skills"
+      ? "/skills/experience/teaching_assistant"
+      : "/skills/skills/languages";
+  const switchLabel = tab === "skills" ? "Experience" : "Skills";
+
+  const openModal = (id: string) => {
+    navigate(`/skills/${tab}/${category}/${id}`, {
+      state: { background: location },
+    });
+    scrollTop();
   };
 
-  /**
-   * Get the categories depending on the tab and display buttons to switch
-   * between them
-   *
-   * @param tab Skills or Experience tab
-   * @param category Category within the tab
-   */
-  const getCategories = (tab: "skills" | "experience") => {
-    return (
-      <div className="flexRow">
-        {Object.keys(skills[tab] ?? {}).map((cat: string) => (
-          <button
-            className="outerButton"
-            onClick={() => navigate(`/skills/${tab}/${cat}`)}
-          >
-            {catMap[cat]}
-          </button>
-        ))}
-      </div>
-    );
+  const closeModal = () => {
+    navigate(-1);
+    scrollTop();
   };
 
   return (
-    <>
-      {/* control bar */}
-      {getControlBar(tab)}
-      {/* category select */}
-      <div className="sectionBlock">
-        {getCategories(tab)}
-        {category && tab && (
-          <>
-            {detail &&
-              skills[tab][category].map((entry: SkillItem) => {
-                if (detail === entry.id) {
-                  return (
-                    <Se
-                      tab={tab}
-                      category={category}
-                      skill={entry}
-                      expanded={detail === entry.id}
-                    />
-                  );
-                }
-              })}
-            <h3 className="sectionSubHeading">{catMap[category]}</h3>
-            <div className="skillSet">
-              {skills[tab][category].map((entry: SkillItem) => {
-                if (entry.id !== detail) {
-                  return (
-                    <Se
-                      tab={tab}
-                      category={category}
-                      skill={entry}
-                      expanded={false}
-                    />
-                  );
-                }
-              })}
-            </div>
-          </>
-        )}
+    <div className="skillsPage">
+      {/* Header */}
+      <div className="skillsHeaderBar">
+        <div className="skillsHeaderTitle">
+          <h2 className="sectionHeading">
+            {tab === "skills" ? "Skills" : "Experience"}
+          </h2>
+        </div>
+
+        <div className="skillsTabSwitchDesktop">
+          <button
+            className="outerButton skillsSwitchButton"
+            onClick={() => navigate(switchTarget)}
+          >
+            {switchLabel}
+          </button>
+        </div>
       </div>
-    </>
+
+      <div className="skillsPanel">
+        {/* Desktop category pills */}
+        <div className="skillsCategoryBar skillsCategoryBarDesktop">
+          {categories.map((catKey) => {
+            const active = catKey === category;
+            return (
+              <button
+                key={catKey}
+                className={`outerButton skillsCategoryButton ${
+                  active ? "skillsCategoryButtonActive" : ""
+                }`}
+                onClick={() => {
+                  navigate(`/skills/${tab}/${catKey}`);
+                  scrollTop();
+                }}
+              >
+                {displayCategory(catKey)}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Mobile category nav */}
+        <div className="skillsCategoryNavMobile">
+          <button
+            className="outerButton skillsCategoryNavArrow"
+            onClick={() => {
+              navigate(`/skills/${tab}/${prevCategory}`);
+              scrollTop();
+            }}
+            aria-label="Previous category"
+            title="Previous category"
+          >
+            <FaChevronLeft />
+          </button>
+
+          <h3 className="sectionHeading skillsCategoryNavTitle">
+            {displayCategory(category)}
+          </h3>
+
+          <button
+            className="outerButton skillsCategoryNavArrow"
+            onClick={() => {
+              navigate(`/skills/${tab}/${nextCategory}`);
+              scrollTop();
+            }}
+            aria-label="Next category"
+            title="Next category"
+          >
+            <FaChevronRight />
+          </button>
+        </div>
+
+        {/* Desktop title row */}
+        <div className="skillsCategoryTitleRow skillsCategoryTitleRowDesktop">
+          <h3 className="sectionHeading skillsCategoryTitle">
+            {displayCategory(category)}
+          </h3>
+        </div>
+
+        {/* Grid */}
+        <div className="skillSet">
+          {list.map((entry: any) => (
+            <Card
+              key={entry.id ?? entry.name}
+              tab={tab}
+              entry={entry}
+              onOpen={() => openModal(entry.id)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Mobile bottom switch */}
+      <div className="skillsTabSwitchMobile">
+        <button
+          className="outerButton skillsTabButton skillsSwitchButton"
+          onClick={() => navigate(switchTarget)}
+        >
+          {switchLabel}
+        </button>
+      </div>
+
+      {/* Modal overlay */}
+      {isModalOpen && detail && selectedEntry && (
+        <div
+          className="skillsModalBackdrop"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          {tab === "skills" ? (
+            <SkillUsedInModal
+              skill={selectedEntry as SkillItem}
+              experienceIndex={experienceIndex}
+              onClose={closeModal}
+              onOpenExperience={(ref) => {
+                navigate(`/skills/experience/${ref.category}/${ref.id}`, {
+                  state: { background: location },
+                });
+                scrollTop();
+              }}
+            />
+          ) : (
+            <ExperienceModal
+              exp={selectedEntry as ExperienceItem}
+              expCategory={category}
+              skillsByExperience={skillsByExperience}
+              onClose={closeModal}
+            />
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
-/*******************************************
- * Skills and Experience previews and infos
- ******************************************/
+/* =======================================================================
+   Cards
+======================================================================= */
 
-type SeProps = {
-  tab: string;
-  category: string;
-  skill: SkillItem;
-  expanded: boolean;
-};
+function Card({
+  tab,
+  entry,
+  onOpen,
+}: {
+  tab: "skills" | "experience";
+  entry: SkillItem | ExperienceItem;
+  onOpen: () => void;
+}) {
+  const Icon = getIcon((entry as any).icon);
 
-/*
- * A skill preview
- */
-function Se({ tab, category, skill, expanded }: SeProps) {
-  const Icon =
-    "icon" in skill
-      ? componentMap[skill.icon as keyof typeof componentMap]
-      : null;
-  const hasPoints = "points" in skill;
-  const navigate = useNavigate();
+  const isSkill = tab === "skills";
+  const usedInCount = isSkill ? ((entry as SkillItem).usedIn?.length ?? 0) : 0;
+
+  // Skills: only show button if it has usedIn
+  const showButton = isSkill ? usedInCount > 0 : true;
 
   return (
     <div className="skillBlock">
-      <h3 className="flexRow">
-        {Icon && <Icon />}
-        {skill.name}
-      </h3>
-      {skill.timeframe == "" || <h4>{skill.timeframe}</h4>}
-      {skill.brief && <p className="sectionBlock">{skill.brief}</p>}
-      {hasPoints && !expanded && (
-        <button
-          className="outerButton"
-          onClick={() => {
-            const scroller = document.querySelector(".body");
-            scroller?.scrollTo({ top: 0, behavior: "smooth" });
-            navigate(`/skills/${tab}/${category}/${skill.id}`);
-          }}
-        >
-          More
-        </button>
+      <div className="skillsCardHeader">
+        <div className="skillsCardTitleRow">
+          {Icon && (
+            <span className="skillsIcon">
+              <Icon />
+            </span>
+          )}
+          <h3 className="skillsCardTitle">{entry.name}</h3>
+        </div>
+        {(entry as any).timeframe && (
+          <div className="skillsCardMeta">{(entry as any).timeframe}</div>
+        )}
+      </div>
+
+      {(entry as any).brief && (
+        <p className="skillsCardBrief">{(entry as any).brief}</p>
       )}
-      {expanded && (
-        <div>
-          {/** Points from the SE*/}
-          {(skill.points ?? []).map((point, idx) => {
-            if (isPointText(point))
-              return <SeText key={`t-${idx}`} pointText={point} />;
-            if (isPointLink(point))
-              return <SeLink key={`l-${idx}`} pointLink={point} />;
-            if (isPointImage(point))
-              return <SeImage key={`i-${idx}`} pointImage={point} />;
-            return null;
-          })}
-          {/** Button to navigate back */}
-          <button
-            className="outerButton"
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            Back
+
+      <div className="skillsCardActions">
+        {showButton && (
+          <button className="outerButton skillsCardButton" onClick={onOpen}>
+            {isSkill ? "Where this skill was used" : "More"}
           </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* =======================================================================
+   Skill Used In Modal
+======================================================================= */
+
+function SkillUsedInModal({
+  skill,
+  experienceIndex,
+  onClose,
+  onOpenExperience,
+}: {
+  skill: SkillItem;
+  experienceIndex: Map<string, ExperienceItem>;
+  onClose: () => void;
+  onOpenExperience: (ref: UsedInRef) => void;
+}) {
+  // Do NOT lock body scroll here (parent already does it)
+  useCloseOnEscape(true, onClose);
+
+  const Icon = getIcon(skill.icon);
+  const used = skill.usedIn ?? [];
+
+  return (
+    <div
+      className="skillsModal"
+      role="dialog"
+      aria-modal="true"
+      onMouseDown={(e) => e.stopPropagation()}
+    >
+      {/* Sticky bar that contains close + title + subtitle */}
+      <div className="skillsModalTopBar">
+        <div className="skillsModalHeaderText">
+          <h3 className="skillsModalTitle">
+            {Icon && <Icon />}
+            {skill.name}
+          </h3>
+          <div className="skillsModalSubtitle">Where this skill was used</div>
         </div>
-      )}
-    </div>
-  );
-}
 
-/**
- * Text Point Props
- */
-type SeTextProps = {
-  pointText: PointText;
-};
+        <button
+          className="skillsModalClose"
+          onClick={onClose}
+          aria-label="Close"
+        >
+          <FaXmark />
+        </button>
+      </div>
 
-/**
- * Text Point
- */
-function SeText({ pointText }: SeTextProps) {
-  return (
-    <div className="sectionBlock">
-      <p> {pointText.text} </p>
-    </div>
-  );
-}
-
-/**
- * Link Point Props
- */
-type SeLinkProps = {
-  pointLink: PointLink;
-};
-
-/**
- * Link Point
- */
-function SeLink({ pointLink }: SeLinkProps) {
-  const caption = pointLink.name || pointLink.link;
-  const Icon =
-    "icon" in pointLink
-      ? componentMap[pointLink.icon as keyof typeof componentMap]
-      : null;
-  return (
-    <div>
-      <a href={pointLink.link} className="outerButton">
-        {Icon && <Icon />}
-        {caption}
-      </a>
-    </div>
-  );
-}
-
-/**
- * Image point props
- */
-type SeImageProps = {
-  pointImage: PointImage;
-};
-
-/**
- * Image Point
- */
-function SeImage({ pointImage }: SeImageProps) {
-  const caption = pointImage.caption || null;
-  return (
-    <div className="sectionBlock">
-      {caption && (
-        <div className="skillBlock">
-          <p>{caption}</p>
+      {/* scrollable body content */}
+      <div className="skillsModalBody">
+        <div className="skillsModalIntroRow">
+          {skill.brief && <p className="skillsModalBrief">{skill.brief}</p>}
         </div>
-      )}
-      <img className="blogPicture" src={`/${pointImage.src}`} />
+
+        {used.length === 0 ? (
+          <div className="skillsEmptyHint">No linked experiences yet.</div>
+        ) : (
+          <div className="skillsUsedInList">
+            {used.map((ref) => {
+              const exp = experienceIndex.get(`${ref.category}:${ref.id}`);
+              if (!exp) return null;
+              const ExpIcon = getIcon(exp.icon);
+
+              return (
+                <button
+                  key={`${ref.category}:${ref.id}`}
+                  className="outerButton skillsUsedInButton"
+                  onClick={() => onOpenExperience(ref)}
+                >
+                  {ExpIcon && (
+                    <span className="skillsUsedInIcon">
+                      <ExpIcon />
+                    </span>
+                  )}
+                  <span className="skillsUsedInText">
+                    <span className="skillsUsedInName">{exp.name}</span>
+                    <span className="skillsUsedInMeta">
+                      {exp.timeframe ?? displayCategory(ref.category)}
+                    </span>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
+}
+
+/* =======================================================================
+   Experience Modal
+======================================================================= */
+
+function ExperienceModal({
+  exp,
+  expCategory,
+  skillsByExperience,
+  onClose,
+}: {
+  exp: ExperienceItem;
+  expCategory: string;
+  skillsByExperience: Map<string, SkillItem[]>;
+  onClose: () => void;
+}) {
+  // Do NOT lock body scroll here (parent already does it)
+  useCloseOnEscape(true, onClose);
+
+  const Icon = getIcon(exp.icon);
+
+  const key = `${expCategory}:${exp.id}`;
+  const linkedSkills = skillsByExperience.get(key) ?? [];
+
+  return (
+    <div
+      className="skillsModal"
+      role="dialog"
+      aria-modal="true"
+      onMouseDown={(e) => e.stopPropagation()}
+    >
+      {/* Sticky bar that contains close + title + subtitle */}
+      <div className="skillsModalTopBar">
+        <div className="skillsModalHeaderText">
+          <h3 className="skillsModalTitle">
+            {Icon && <Icon />}
+            {exp.name}
+          </h3>
+          <div className="skillsModalSubtitle">
+            {exp.timeframe ?? displayCategory(expCategory)}
+          </div>
+        </div>
+
+        <button
+          className="skillsModalClose"
+          onClick={onClose}
+          aria-label="Close"
+        >
+          <FaXmark />
+        </button>
+      </div>
+
+      {/* scrollable body content */}
+      <div className="skillsModalBody">
+        <div className="skillsModalIntroRow">
+          {exp.brief && <p className="skillsModalBrief">{exp.brief}</p>}
+        </div>
+
+        {(exp.points ?? []).length > 0 && (
+          <div className="skillsPoints">
+            {(exp.points ?? []).map((p, idx) => (
+              <PointView key={idx} point={p} />
+            ))}
+          </div>
+        )}
+
+        {linkedSkills.length > 0 && (
+          <div className="skillsExperienceSkills">
+            <div className="skillsExperienceSkillsTitle">Skills used</div>
+            <ul className="skillsExperienceSkillsList">
+              {linkedSkills.map((s) => (
+                <li key={s.id}>{s.name}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* =======================================================================
+   Point renderer
+======================================================================= */
+
+function PointView({ point }: { point: Point }) {
+  if (isPointText(point)) {
+    return (
+      <div className="skillsPoint">
+        <p>{point.text}</p>
+      </div>
+    );
+  }
+
+  if (isPointLink(point)) {
+    const Icon = getIcon(point.icon);
+    return (
+      <div className="skillsPoint">
+        <a
+          className="outerButton skillsLinkButton"
+          href={point.link}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {Icon && <Icon />}
+          {point.name}
+        </a>
+      </div>
+    );
+  }
+
+  if (isPointImage(point)) {
+    return (
+      <div className="skillsPoint">
+        {point.caption && (
+          <div className="skillsImageCaption">{point.caption}</div>
+        )}
+        <div className="skillsPointImage">
+          <img
+            className="blogPicture"
+            src={`/${point.src}`}
+            alt={point.caption ?? "Experience image"}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return null;
 }

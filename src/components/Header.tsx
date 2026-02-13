@@ -1,81 +1,129 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import profilePic from "../assets/profile.jpeg";
 import { useMatch, useNavigate } from "react-router-dom";
 
 /* icons */
-import { GrActions } from "react-icons/gr";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HiAcademicCap } from "react-icons/hi2";
 import { LuKeyboard } from "react-icons/lu";
-import { SiGodotengine } from "react-icons/si";
 import { IoIosHome } from "react-icons/io";
-import { FaFileDownload, FaGithub, FaBook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa6";
-import { FaCode } from "react-icons/fa";
-import { FaKeyboard } from "react-icons/fa";
+import { FaFileDownload, FaGithub, FaBook, FaCode } from "react-icons/fa";
+import { FaLinkedin, FaXmark } from "react-icons/fa6";
+import { GrActions } from "react-icons/gr";
 
-/* Components */
+/* Styles */
 import "./Header.css";
 import "./Bodies.css";
+
+function useLockBodyScroll(locked: boolean) {
+  useEffect(() => {
+    if (!locked) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [locked]);
+}
+
+function useCloseOnEscape(open: boolean, onClose: () => void) {
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open, onClose]);
+}
 
 /**
  * The header for the website
  */
 export default function Header() {
-  const [mobileNav, setMobileNav] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useLockBodyScroll(mobileMenuOpen);
+  useCloseOnEscape(mobileMenuOpen, () => setMobileMenuOpen(false));
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  // Render the mobile overlay into document.body to avoid z-index / stacking-context issues.
+  const mobileMenu = mobileMenuOpen
+    ? createPortal(
+        <div
+          className="headerMobileOverlay"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) closeMobileMenu();
+          }}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="headerMobileSheet"
+            onMouseDown={(e) => e.stopPropagation()}
+          >
+            <div className="headerMobileTopBar">
+              <div className="headerMobileTopTitle">Menu</div>
+              <button
+                className="headerMobileClose"
+                onClick={closeMobileMenu}
+                aria-label="Close menu"
+                title="Close menu"
+              >
+                <FaXmark />
+              </button>
+            </div>
+
+            <div className="headerMobileMenu">
+              <NavArea onNavigate={closeMobileMenu} />
+              <UserArea />
+            </div>
+          </div>
+        </div>,
+        document.body,
+      )
+    : null;
 
   return (
     <header className="header">
+      {/* Desktop */}
       <div className="desktopHeader">
         <ProfilePic />
         <ProfileArea />
-        <NavArea />
+        <NavArea onNavigate={undefined} />
         <UserArea />
       </div>
+
+      {/* Mobile taskbar */}
       <div className="mobileHeader">
         <div className="mobileTaskbar">
           <ProfilePic />
           <ProfileArea />
-          <div className="mobileTaskbar">
-            <button className="burger" onClick={() => setMobileNav("nav")}>
-              <h1>
-                <GiHamburgerMenu />
-              </h1>
-            </button>
-          </div>
+          <button
+            className="burger"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+            title="Open menu"
+          >
+            <GiHamburgerMenu />
+          </button>
         </div>
-        {mobileNav && (
-          <>
-            {mobileNav === "nav" && (
-              <div className="mobileNavBlock">
-                <NavArea />
-                <UserArea />
-              </div>
-            )}
-            <button
-              onClick={() => {
-                setMobileNav("");
-              }}
-              className="outerButton"
-            >
-              <h2>Close</h2>
-            </button>
-          </>
-        )}
       </div>
+
+      {mobileMenu}
     </header>
   );
 }
 
 /**
  * component showing profile information
- *
- * @component
  */
 function ProfileArea() {
   return (
     <div className="headerInfo">
-      <h1 className="infoCaption">Dylan James Reid </h1>
+      <h1 className="infoCaption">Dylan James Reid</h1>
       <h3 className="infoCaptionSub">
         <FaCode />
         Software Engineer
@@ -90,7 +138,7 @@ function ProfileArea() {
 function ProfilePic() {
   return (
     <div className="userArea">
-      <img src={profilePic} className="profilePic" />
+      <img src={profilePic} className="profilePic" alt="Profile" />
     </div>
   );
 }
@@ -98,9 +146,9 @@ function ProfilePic() {
 /**
  * The navigation area for the header
  */
-function NavArea() {
+function NavArea({ onNavigate }: { onNavigate?: () => void }) {
   const navigate = useNavigate();
-  /* Decide on styles for navigation */
+
   const isHome = !!useMatch("/home");
   const isEducation = !!useMatch("/education");
   const isSkills = !!useMatch("/skills/*");
@@ -109,20 +157,25 @@ function NavArea() {
   const educationStyle = isEducation ? "navSelected" : "navButton";
   const skillsStyle = isSkills ? "navSelected" : "navButton";
 
-  /* Return the react component */
+  const go = (path: string) => {
+    navigate(path);
+    onNavigate?.();
+  };
+
   return (
     <div className="navGroup">
       <nav className="nav">
-        <a className={homeStyle} onClick={() => navigate("/home")}>
+        <button className={homeStyle} onClick={() => go("/home")}>
           <IoIosHome /> Home
-        </a>
-        <a className={educationStyle} onClick={() => navigate("/education")}>
+        </button>
+        <button className={educationStyle} onClick={() => go("/education")}>
           <HiAcademicCap /> Education
-        </a>
-        <a className={skillsStyle} onClick={() => navigate("/skills")}>
+        </button>
+        <button className={skillsStyle} onClick={() => go("/skills")}>
           <LuKeyboard /> Skills/Experience
-        </a>
+        </button>
       </nav>
+
       <nav className="nav">
         <a className="navLink" href="./CV.pdf" download="CV-Dylan-Reid">
           <FaFileDownload />
@@ -161,20 +214,25 @@ function NavArea() {
 }
 
 /**
- * The user area of the header. It allows for logging in and out and toggling
- * dark mode.
+ * The user area of the header.
  */
 function UserArea() {
+  const [isLight, setIsLight] = useState(() =>
+    document.documentElement.classList.contains("light"),
+  );
+
   return (
     <div className="userArea">
       <button
         className="userButton"
-        title="Toggle Light and Dark mode"
+        aria-pressed={isLight}
+        title="Toggle light/dark mode"
         onClick={() => {
           document.documentElement.classList.toggle("light");
+          setIsLight(document.documentElement.classList.contains("light"));
         }}
       >
-        <GrActions /> Mode
+        <GrActions /> {isLight ? "Light" : "Dark"}
       </button>
     </div>
   );

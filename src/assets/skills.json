@@ -1,278 +1,560 @@
 {
   "skills": {
-    "technical": [
-      { "name": "Python",
-        "id":"python",
+    "languages": [
+      {
+        "name": "Python",
+        "id": "python",
         "timeframe": "Since 2023",
         "brief": "Familiar with Flask. Can use for development and data engineering in Jupyter. Familiar with numpy, scipy, pandas, sklearn, and more.",
-        "icon": "PYTHON" },
-
-      { "name": "Java",
+        "icon": "PYTHON",
+        "usedIn": [
+          { "category": "jobs", "id": "demi_project" },
+          { "category": "projects_university", "id": "ml_algorithms" },
+          { "category": "projects_university", "id": "python_games" },
+          { "category": "projects_university", "id": "automata_345" },
+          { "category": "hackathons", "id": "suds-hackathon" },
+          { "category": "hackathons", "id": "lab-hackathon" }
+        ]
+      },
+      {
+        "name": "Java",
         "id": "java",
         "timeframe": "Since 2024",
-        "brief": "Very comfortable in JAVA with lots of experience.",
-        "icon": "JAVA" },
-
-      { "name": "Fullstack technologies",
+        "brief": "Comfortable with building applications in Java.",
+        "icon": "JAVA",
+        "usedIn": [
+          { "category": "projects_university", "id": "networks" },
+          { "category": "projects_university", "id": "braille-translator" }
+        ]
+      },
+      {
+        "name": "C",
+        "id": "c",
+        "timeframe": "Since 2024",
+        "brief": "Used to build a compiler, job scheduler, and Othello engine.",
+        "icon": "C",
+        "usedIn": [
+          { "category": "projects_university", "id": "compiler" },
+          { "category": "projects_university", "id": "job-scheduler" },
+          { "category": "projects_university", "id": "othello" }
+        ]
+      },
+      {
+        "name": "Fullstack technologies",
         "id": "fullstack",
         "timeframe": "Since 2025",
         "brief": "HTML, CSS, JavaScript/TypeScript with React/Express, and React Native. Able to make aesthetically pleasing websites and mobile apps.",
-        "icon": "TS" },
-
-      { "name": "C",
-        "id":"c",
-        "timeframe": "Since 2024",
-        "brief": "Used to build a compiler, job scheduler, and Othello engine.",
-        "icon": "C" },
-
-      { "name": "Agile",
-        "id": "agile",
-        "timeframe": "Since 2025",
-        "brief": "Familiar with the Agile process. I acted as scrum-master during our third year software engineering project.",
-        "icon": "TM" },
-
-      { "name": "Git",
+        "icon": "TS",
+        "usedIn": [
+          { "category": "hackathons", "id": "suds-hackathon" },
+          { "category": "projects_personal", "id": "le-site" },
+          { "category": "projects_university", "id": "brainscraper" },
+          { "category": "projects_university", "id": "ponderr" },
+          { "category": "projects_university", "id": "this-is-pretty-meta" }
+        ]
+      }
+    ],
+    "tooling_workflow": [
+      {
+        "name": "Git",
         "id": "git",
         "timeframe": "Since 2023",
         "brief": "Comfortable with git.",
-        "icon": "GIT" },
-
-      { "name": "Build Tools, CI/CD",
+        "icon": "GIT",
+        "usedIn": [
+          { "category": "hackathons", "id": "suds-hackathon" },
+          { "category": "projects_personal", "id": "le-site" },
+          { "category": "projects_personal", "id": "fluximux" },
+          { "category": "projects_personal", "id": "collabyrinth" },
+          { "category": "projects_university", "id": "brainscraper" },
+          { "category": "projects_university", "id": "ponderr" },
+          { "category": "projects_university", "id": "this-is-pretty-meta" },
+          { "category": "projects_university", "id": "automata_345" },
+          { "category": "projects_university", "id": "othello" },
+          { "category": "projects_university", "id": "networks" },
+          { "category": "projects_university", "id": "job-scheduler" },
+          { "category": "projects_university", "id": "compiler" },
+          { "category": "projects_university", "id": "braille-translator" }
+        ]
+      },
+      {
+        "name": "Prompting [LLMs]",
+        "id": "llm",
+        "timeframe": "Since 2023",
+        "brief": "Comfortable using LLMs as an efficiency, debugging, and productivity tool.",
+        "icon": "AI",
+        "usedIn": [
+          { "category": "projects_personal", "id": "le-site" },
+          { "category": "projects_personal", "id": "fluximux" },
+          { "category": "projects_personal", "id": "collabyrinth" },
+          { "category": "projects_university", "id": "this-is-pretty-meta" },
+          { "category": "projects_university", "id": "ml" }
+        ]
+      },
+      {
+        "name": "Build Tools, CI/CD",
         "id": "build",
         "timeframe": "Since 2025",
         "brief": "Familiar with build tools like Make and Maven. Familiar with setting up CI/CD pipelines.",
-        "icon": "C" },
-
-      { "name": "Godot",
+        "icon": "C",
+        "usedIn": [
+          { "category": "projects_university", "id": "brainscraper" },
+          { "category": "projects_university", "id": "ponderr" },
+          { "category": "projects_university", "id": "this-is-pretty-meta" },
+          { "category": "projects_university", "id": "othello" },
+          { "category": "projects_university", "id": "job-scheduler" },
+          { "category": "projects_university", "id": "compiler" }
+        ]
+      },
+      {
+        "name": "Agile",
+        "id": "agile",
+        "timeframe": "Since 2025",
+        "brief": "Familiar with the Agile process. I acted as scrum-master during our third year software engineering project.",
+        "icon": "TM",
+        "usedIn": [
+          { "category": "projects_university", "id": "ponderr" }
+        ]
+      }
+    ],
+    "data_ml": [
+      {
+        "name": "Machine Learning",
+        "id": "ml",
+        "timeframe": "Since 2025",
+        "brief": "Familiar with core machine learning concepts and common supervised and unsupervised algorithms.",
+        "icon": "ML",
+        "usedIn": [
+          { "category": "jobs", "id": "demi-ml" },
+          { "category": "projects_university", "id": "ml_algorithms" }
+        ]
+      }
+    ],
+    "gamedev_creative": [
+      {
+        "name": "Godot",
         "id": "godot",
         "timeframe": "Since 2023",
         "brief": "Primary tool I use for game dev.",
-        "icon": "GODOT" },
-
-      { "name": "Pixel Art Animation",
+        "icon": "GODOT",
+        "usedIn": [{ "category": "projects_personal", "id": "collabyrinth" }]
+      },
+      {
+        "name": "Pixel Art Animation",
         "id": "pixel-art",
         "timeframe": "Since 2024",
         "brief": "Familiar with tools like Krita and Aseprite. I frequently use Aseprite for book marketing and game dev.",
-        "icon":"PIX",
-        "points" : [
-          {"name": "Book Marketing Insta",
-           "link": "https://www.instagram.com/scifidylanreid/"
-          }]
-        },
-
-      { "name": "Video Editing",
+        "icon": "PIX",
+        "usedIn": [{ "category": "projects_personal", "id": "collabyrinth" }]
+      },
+      {
+        "name": "Video Editing",
         "id": "video-editing",
         "timeframe": "Since 2016",
         "brief": "Familiar with tools like Movavi and CapCut. I frequently use CapCut for book marketing.",
-        "icon":"FaVideo" }
+        "icon": "VIDEO"
+      }
     ],
-
     "soft": [
-      { "name": "Teamwork", "id":"teamwork", "icon": "TEAMWORK" },
-      { "name": "Time-management", "id":"time-management", "icon": "TM" },
-      { "name": "Adaptability", "id": "adaptability", "icon": "ADAPT" },
-      { "name": "Critical Thinking", "id":"critical-thinking", "icon": "CT" },
-      { "name": "Inclusivity", "id":"inclusivity", "icon": "INCL" },
-      { "name": "Resourcefulness", "id": "resourcefulness", "icon": "RESOURCE" },
-      { "name": "Leadership", "id":"leadership", "icon": "LEADERSHIP" }
+      { "name": "Teamwork", "id": "teamwork", "icon": "TEAMWORK",
+        "usedIn": [
+          { "category": "hackathons", "id": "suds-hackathon" },
+          { "category": "hackathons", "id": "lab-hackathon" },
+          { "category": "leadership_community", "id": "media" },
+          { "category": "creative_nontech", "id": "erase-and-rewind" },
+          { "category": "projects_university", "id": "brainscraper" },
+          { "category": "projects_university", "id": "ponderr" },
+          { "category": "projects_university", "id": "networks" }
+        ]
+      },
+      { "name": "Time-management", "id": "time-management", "icon": "TM",
+        "usedIn": [
+          { "category": "hackathons", "id": "suds-hackathon" },
+          { "category": "leadership-community", "id": "wildlife" },
+          { "category": "leadership-community", "id": "media" },
+          { "category": "projects_university", "id": "brainscraper" },
+          { "category": "projects_university", "id": "ponderr" },
+          { "category": "projects_university", "id": "this-is-pretty-meta" },
+          { "category": "projects_university", "id": "automata_345" },
+          { "category": "projects_university", "id": "othello" },
+          { "category": "projects_university", "id": "networks" },
+          { "category": "projects_university", "id": "job-scheduler" },
+          { "category": "projects_university", "id": "compiler" },
+          { "category": "projects_university", "id": "braille-translator" }
+        ]
+      },
+      { "name": "Adaptability", "id": "adaptability", "icon": "ADAPT",
+        "usedIn": [
+          { "category": "hackathons", "id": "suds-hackathon" },
+          { "category": "leadership-community", "id": "wildlife" },
+          { "category": "leadership-community", "id": "media" },
+          { "category": "creative_nontech", "id": "severed-system" },
+          { "category": "creative_nontech", "id": "erase-and-rewind" }
+        ]
+      },
+      { "name": "Critical Thinking", "id": "critical-thinking", "icon": "CT",
+        "usedIn": [
+          { "category": "hackathons", "id": "suds-hackathon" },
+          { "category": "creative_nontech", "id": "severed-system" },
+          { "category": "projects_personal", "id": "collabyrinth" },
+          { "category": "projects_university", "id": "automata_345" },
+          { "category": "projects_university", "id": "othello" },
+          { "category": "projects_university", "id": "job-scheduler" },
+          { "category": "projects_university", "id": "compiler" },
+          { "category": "projects_university", "id": "braille-translator" }
+        ]
+      },
+      { "name": "Resourcefulness", "id": "resourcefulness", "icon": "RESOURCE",
+
+        "usedIn": [
+          { "category": "hackathons", "id": "suds-hackathon" },
+          { "category": "jobs", "id": "demi_project" },
+          { "category": "creative_nontech", "id": "severed-system" },
+          { "category": "creative_nontech", "id": "erase-and-rewind" }
+        ]
+      },
+      { "name": "Leadership", "id": "leadership", "icon": "LEADERSHIP",
+        "usedIn": [
+          { "category": "leadership-community", "id": "wildlife" },
+          { "category": "leadership-community", "id": "media" },
+          { "category": "creative_nontech", "id": "erase-and-rewind" },
+          { "category": "jobs", "id": "demi_project" },
+          { "category": "projects_university", "id": "ponderr" }
+        ]
+      }
     ]
   },
-
   "experience": {
-    "employment": [
-      { "name": "Computer Science 144 Head Project Demi",
-        "id":"demi-project",
-        "timeframe":"November 2025 - November 2026",
+    "jobs": [
+      {
+        "name": "Computer Science 144 Head Project Demi",
+        "id": "demi_project",
+        "timeframe": "November 2025 - November 2026",
         "brief": "Developing the project, its reference implementation, the specification, and test script / suite for the first year students at Stellenbosch University.",
-        "icon":"LATEX",
-        "points":[
-          {"text": "At the end of 2025, I began working with Prof Lynette van Zijl and later Prof van der Merwe in developing the Computer Science 144 semester project that the first year computer science students will receive during the module in their second semester."},
-          {"text": "The students will be required to implement a python program, the nature thereof I will share here when I am permitted. I was tasked with designing a project suitable for the skill level of first years that focused on Object Oriented Programming principles. I had to design a unique project that students could not simply download a solution for."},
+        "icon": "DEMI",
+        "points": [
+          {
+            "text": "At the end of 2025, I began working with Prof Lynette van Zijl and later Prof van der Merwe in developing the Computer Science 144 semester project that the first year computer science students will receive during the module in their second semester."
+          },
+          {
+            "text": "The students will be required to implement a python program, the nature thereof I will share here when I am permitted. I was tasked with designing a project suitable for the skill level of first years that focused on Object Oriented Programming principles. I had to design a unique project that students could not simply download a solution for."
+          },
           {
             "text": "As part of this process, I developed a full implementation of the project, called the Oracle, which acted as the true, 'correct' solution of the project. The Oracle was used to develop the test suite, so that the outputs would exactly match that of what the program was meant to generate."
           },
           {
             "text": "I also wrote a marking script that would automatically mark all student submissions, as the students' code was specified to behave deterministically. This script will mark student submissions by running their solution through test suites applicable to the given submission, and give them a mark determined by a weighted sum of their pass rate in each test-case category."
           },
-          {"text":"This marking script also acts as a tool that students can use to check their own code before submission, with the incomplete test-suite."
+          {
+            "text": "This marking script also acts as a tool that students can use to check their own code before submission, with the incomplete test-suite."
           },
           {
-            "text":"I wrote the student specification for the project in LaTeX, as required by the professors, that strictly detailed what the students were to implement."
+            "text": "I wrote the student specification for the project in LaTeX, as required by the professors, that strictly detailed what the students were to implement."
           },
           {
-            "text":"In the second semester of 2026, I will be tasked with running the project, which will entail running Q&A sessions, answering student query emails, resolving issues, and handling the project-marking (using the marking script) on a weekly basis."
+            "text": "In the second semester of 2026, I will be tasked with running the project, which will entail running Q&A sessions, answering student query emails, resolving issues, and handling the project-marking (using the marking script) on a weekly basis."
           },
           {
-            "text":"Overall, this project has given me some great Software Engineering practice, as I've learned to work with clients (the professors), write a formal specification, spend a large amout of correctness testing (Both for the Oracle and the students' implementaion), and conform to time constraints. It has also been the most significant engineering project that I have done with high stakes that are not just about University marks."
+            "text": "Overall, this project has given me some great Software Engineering practice, as I've learned to work with clients (the professors), write a formal specification, spend a large amount of correctness testing (Both for the Oracle and the students' implementation), and conform to time constraints. It has also been the most significant engineering project that I have done with high stakes that are not just about University marks."
           },
-          {"text":"I am looking forward to the latter half of the year, where I will have the honour of running this project for a couple hundred students."}
+          {
+            "text": "I am looking forward to the latter half of the year, where I will have the honour of running this project for a couple hundred students."
+          }
         ]
       },
-      { "name": "Computer Science 315 Demi",
-        "id":"demi-ml",
-        "timeframe":"February - June 2026",
+      {
+        "name": "Computer Science 315 Demi",
+        "id": "demi-ml",
+        "timeframe": "February - June 2026",
         "brief": "General Demi for the CS315 Machine Learning module at Stellenbosch University, where I assist students during weekly tutorials, and invigilate students during assignment tests at exams.",
-        "icon":"ML"
-      }],
-    "personal-tech-experience": [
-      { "name": "SUDS Hackathon Winners",
-        "id":"suds-hackathon",
-        "timeframe":"3-5 October 2025",
-        "brief": "Winners of the Stellenbosch Developer's Society 2025 Hackathon.",
-        "icon":"NUT",
-        "points":[
-          {"text":"Dylan Swarts and I participated against 7 other teams in the SUDS Hackathon of 2025. The theme was to build something that would improve student life. Swarts and I (as a team called \"Dylan Squared\" since we are both called Dylan) developed a full-stack system called \" Maroonut\", a digitized version of the Stellenbosch University's Faculty yearbook. We built this system over a 38 period period from Friday, 3 October at 20:00 (Right after writing a 3rd year maths exam) to Sunday, 5 October at 10:00. The full implementation and detailed README can be found at Github via the link below."},
-          {"name":"Check out Maroonut on Github", "link":"https://github.com/TheAlgorMortis/suds-hackathon-2025", "icon":"GIT"},
-          {"name":"Check out the website of my teammate, Dylan Swarts", "link":"https://straws11.github.io/", "icon":"TEAMWORK"},
-          {"src":"maroonut/home.png","caption":"When you first arrive at maroonut, you will land on the home page, detailing the purpose and functionality of the service."},
-          {"text":"Maroonut uses React Router, so you can bookmark any page and share links to certain modules directly."},
-          {"src":"maroonut/login.png","caption":"You can log in to your own account, which allows you to view modules, post reviews on modules you've already completed, and even advertise yourself as a tutor for specific modules."},
-          {"text":"Note that user authentication was not fully implented as it was not the focus during our short timeframe, but future versions would likely authenticate via Stellenbosch's existing database."},
-          {"src":"maroonut/modules.png","caption":"Once logged in, you can view all modules and even search for modules based on search terms to find what you're looking for."},
-          {"src":"maroonut/module.png","caption":"Every module has a dedicated page with the module's framework, lecture and tutorial hours, and the module's pre- and corequistes, which also act as buttons to direct you to those modules. The module rating is based off of an average of all reviewer's ratings of the module."},
-          {"src":"maroonut/reviews.png","caption":"Scrolling further down, you can view reviews for the module by people who have taken it in the past. This allows you to guage more about the module than a module framework allows, as you hear students' real world experience with the module to better advise you. If you've passed a module, you can give your own review on it, and rate it by clicking on the stars. Users can also gift and revoke 'acorns' to and from the review. Reviews are sorted descendingly by acorns so that the best reviews stay at the top."},
-          {"src":"maroonut/tutors.png","caption":"You can also see users who are tutoring for the module, showing a brief description of each tutor's service and their rate, as well as buttons to contact them via email and visit their profiles."},
-          {"src":"maroonut/profile.png","caption":"On a user's profile page, you can see how many acorns they've been gifted over reviews, modules taken and their outcomes, and modules they've reviewed or are tutoring for."}
+        "icon": "DEMI"
+      }
+    ],
+    "projects_personal": [
+      {
+        "name": "Little Explorers Website [Frontend]",
+        "id": "le-site",
+        "timeframe": "February 2026",
+        "brief": "Informational website for Little Explorers for prospective clients to decide if they wish to send their child to the centre.",
+        "icon": "TS",
+        "points": [
+          {
+            "text": "My mother owns and runs a preschool and aftercare from home called \"Little Explorers Aftercare and Preschool.\" For most of its lifetime, it's had a simple website written in php by my father. It was a good website, but had a few issues. Firstly, the information was completely outdated, as the services offered by Little Explorers have changed over the years. It's style is also dated. The largest issue was a lack of adaptivity, meaning that the website looked terrible on a mobile screen."
+          },
+          {"text": "After my webdev course in 3rd year, I proposed to my family that I design a new website to resolve these issues, as my father didn't have the modern day skills to perform such a task. My mother is a very busy woman, so my father incrementally elicited requirements from her and put it all in basic html in the old website's php structure."},
+          {"text": "In early February, I ported all the existing code from php to Typescript with React (Using some help from chatGPT to speed things up), then worked on overhauling the CSS, adding some icons, using React Router for navigation, and most importantly, making the website adaptive."
+          },
+          {"text": "After all of this, I used ftp to upload the built website via the absolutehosting service that my dad has been using to keep the website live."},
+          {"text": "Below the links, I have some comparison pictures between the old website and the new website."
+          },
+          {
+            "name": " Check out the live website",
+            "link": "https://www.littleexplorers.co.za/home/welcome",
+            "icon": "TS"
+          },
+          {
+            "name": " Check it out on Github",
+            "link": "https://github.com/TheAlgorMortis/littleexplorers",
+            "icon": "GIT"
+          },
+          {
+            "src": "le/what-we-offer-old.png",
+            "caption": "The old \"What We Offer\" screen:"
+          },
+          {
+            "src": "le/what-we-offer-new.png",
+            "caption": "The new \"What We Offer\" screen:"
+          },
+          {
+            "src": "le/aftercare-old.png",
+            "caption": "The old \"Aftercare\" screen"
+          },
+          {
+            "src": "le/aftercare-new.png",
+            "caption": "The new \"Aftercare\" screen"
+          },
+          {
+            "src": "le/contact-old.png",
+            "caption": "The old \"Contact\" screen"
+          },
+          {
+            "src": "le/contact-new.png",
+            "caption": "The new \"Contact\" screen"
+          },
+          {"text": "Note, the images above don't document all changes, just some examples."
+          },
+          {"text": "In the future, should I find the time, I would also like to implement a backend for littleexplorers that will allow users of the website to send enquires and see a display of recent posts from the littleexplorers instagram and facebook accounts, and to create a database that could automate a lot of the admin my mother does manually to make her life easier."},
+          {"text":"If you have a child in the Durbanville area in need of a preschool or aftercare, Little Explorers would love to have you."}
         ]
       },
-
-      { "name": "Standard Bank Hackathon",
-        "id": "lab-hackathon",
-        "timeframe": "2023",
-        "brief": "Performed behavioural segmentation on taxi drivers.",
-        "icon": "TAXI" },
-
-      { "name": "Investec Tech Scholarship Mentorship",
-        "id":"investec",
-        "timeframe": "2024-present",
-        "brief": "At the end of my first year I was awarded a full cost scholarship with Investec which has funded me since my second year. After my honours, I will then be able to go work for them. During the scholarship I have networked with many people at the company and have learned a lot about industry from them.",
-        "icon": "INVEST" },
-
-      { "name": "Godot Game 'Collabyrinth'",
-        "id":"collabyrinth",
-        "timeframe": "2024-present",
+      {
+        "name": "Fluximux [Tmux plugin]",
+        "id": "fluximux",
+        "timeframe": "February 2026",
+        "brief": "Tmux plugin that shows you your internet down/up speed, and allows you to run a speed test directly in your terminal.",
+        "icon": "TMUX",
+        "points": [
+          {
+            "name": " Check out the README on github for more info.",
+            "link": "https://github.com/TheAlgorMortis/fluximux",
+            "icon": "GIT"
+          }
+        ]
+      },
+      {
+        "name": "Collabyrinth [Godot Game]",
+        "id": "collabyrinth",
+        "timeframe": "2024-2025",
         "brief": "I built a maze game in Godot 4. Check the README in the repo linked below.",
-        "icon":"GODOT",
-        "points":[
-          {"text": "Collabyrinth is a continuous passion-project that I incrementally develop to hone my skills in game-development before I tackle my first ambitious long-term project."},
-          {"name": " Check it out on Github", "link": "https://github.com/TheAlgorMortis/Collabyrinth", "icon": "GODOT" }
+        "icon": "GODOT",
+        "points": [
+          {
+            "text": "Collabyrinth is a continuous passion-project that I incrementally develop to hone my skills in game-development before I tackle my first ambitious long-term project."
+          },
+          {
+            "name": " Check it out on Github",
+            "link": "https://github.com/TheAlgorMortis/Collabyrinth",
+            "icon": "GODOT"
+          }
         ]
       }
     ],
-
-    "university-projects": [
-      { "name": "Brainscraper [Fullstack Webdev]",
+    "projects_university": [
+      {
+        "name": "Brainscraper [Fullstack Webdev]",
         "id": "brainscraper",
-        "timeframe":"2025",
-        "brief": "A Kahoot-like online mutiplayer trivia game with websockets for real-time syncronization, full JWT + Refresh token Authentication, and some suspenseful music to keep the excitement going",
-        "icon":"TS"
+        "timeframe": "2025",
+        "brief": "A Kahoot-like online multiplayer trivia game with websockets for real-time syncronization, full JWT + Refresh token Authentication, and some suspenseful music to keep the excitement going",
+        "icon": "TS"
       },
-
-      { "name": "Ponderr [Fullstack Mobile Dev]",
+      {
+        "name": "Ponderr [Fullstack Mobile Dev]",
         "id": "ponderr",
         "timeframe": "2025",
         "brief": "A tinder-style game used for a group of people to decide what to watch. Each player swipes on movies until all players agree. Players are authorized using Plex OAuth, and movie data is pulled from Plex.",
         "icon": "MOVIE"
       },
-
-      { "name":"DFA + BPE LLM Tokenizer",
-        "id": "automata-345",
+      {
+        "name": "DFA + BPE LLM Tokenizer",
+        "id": "automata_345",
         "timeframe": "2025",
-        "brief": "An investigative-style project implementing a Tokenizer equivalent to that on minbpe's BasicTokenizer including optimizations, DFA visualtions, and more.",
+        "brief": "An investigative-style project implementing a Tokenizer equivalent to that on minbpe's BasicTokenizer including optimizations, DFA visualizations, and more.",
         "icon": "BRAIN"
       },
-
-      { "name": "Personal Website with Typescript and React",
-        "id":"this-is-pretty-meta",
+      {
+        "name": "Personal Website with Typescript and React",
+        "id": "this-is-pretty-meta",
         "timeframe": "2025 - present",
         "brief": "This is the website you're looking at now. Originally implemented in Javascript, it has since been adapted to typescript and improved in many ways.",
         "icon": "TS"
       },
-
-      { "name": "Othello Game Engine",
+      {
+        "name": "Othello Game Engine",
         "id": "othello",
         "timeframe": "2025",
         "brief": "Parallel search negamax algorithm in C using MPI.",
         "icon": "BOARD"
       },
-
-      { "name": "Networking Projects In Java",
+      {
+        "name": "Networking Projects In Java",
         "id": "networks",
         "timeframe": "2025",
         "brief": "Chatroom, VoIP, file transfer and torrent.",
         "icon": "JAVA"
       },
-
-      { "name": "Job Scheduler",
+      {
+        "name": "Job Scheduler",
         "id": "job-scheduler",
         "timeframe": "2025",
         "brief": "In C using openMP.",
         "icon": "C"
       },
-
-      { "name": "Machine Learning Algorithms",
+      {
+        "name": "Machine Learning Algorithms",
+        "id": "ml_algorithms",
         "timeframe": "2025",
         "brief": "Various algorithms implemented in Jupyter with python, including Naive Bayes classifier, Logistic Regression, Principal Component Analysis, Linear Discriminant Analysis, The EM Algorithm, Gaussian Mixture Models, and Hidden Markov Models.",
         "icon": "JUPYTER"
       },
-
-      { "name": "LL(1) Compiler",
+      {
+        "name": "LL(1) Compiler",
         "id": "compiler",
         "timeframe": "2024",
         "brief": "Compiler implemented in C for a language called SIMPL. Included a scanner, parser, type-checking, and code generation.",
         "icon": "C"
       },
-
-      { "name": "Braille Translator",
+      {
+        "name": "Braille Translator",
         "id": "braille-translator",
         "timeframe": "2024",
-        "brief": "Java Afrikaans to Braille translater.",
-        "icon": "JAVA" },
-
-      { "name": "Air Race and Obstacle Chess Games",
-        "id":"python-games",
+        "brief": "Java Afrikaans to Braille translator.",
+        "icon": "JAVA"
+      },
+      {
+        "name": "Air Race and Obstacle Chess Games",
+        "id": "python_games",
         "timeframe": "2023",
-        "brief": "Games made in python, both with primative GUIs.",
-        "icon": "PYTHON" }
+        "brief": "Games made in python, both with primitive GUIs.",
+        "icon": "PYTHON"
+      }
     ],
-
-    "non-tech-endeavors": [
-      { "name": "Transfer: The Severed System (My Novel)",
-        "id":"severed-system",
-        "timeframe": "2017-present",
-        "brief": "I have been working on a novel the past 8 years. I won a Gold Diploma for it in the Cape Town Writing Eisteddfod in 2021. I am working on publishing it. I have also written the first drafts for two sequels, and have plans for other works.",
-        "icon":"BOOK",
+    "hackathons": [
+      {
+        "name": "SUDS Hackathon Winners",
+        "id": "suds-hackathon",
+        "timeframe": "3-5 October 2025",
+        "brief": "Winners of the Stellenbosch Developer's Society 2025 Hackathon.",
+        "icon": "NUT",
         "points": [
-          {"name": "Book Website", "link": "https://ddylanrreid.wixsite.com/my-site", "icon": "BOOK" }
+          {
+            "text": "Dylan Swarts and I participated against 7 other teams in the SUDS Hackathon of 2025. The theme was to build something that would improve student life. Swarts and I (as a team called \"Dylan Squared\" since we are both called Dylan) developed a full-stack system called \" Maroonut\", a digitized version of the Stellenbosch University's Faculty yearbook. We built this system over a 38 hour period from Friday, 3 October at 20:00 (Right after writing a 3rd year maths exam) to Sunday, 5 October at 10:00. The full implementation and detailed README can be found at Github via the link below."
+          },
+          {
+            "name": "Check out Maroonut on Github",
+            "link": "https://github.com/TheAlgorMortis/suds-hackathon-2025",
+            "icon": "GIT"
+          },
+          {
+            "name": "Check out the website of my teammate, Dylan Swarts",
+            "link": "https://straws11.github.io/",
+            "icon": "TEAMWORK"
+          },
+          {
+            "src": "maroonut/home.png",
+            "caption": "When you first arrive at maroonut, you will land on the home page, detailing the purpose and functionality of the service."
+          },
+          { "text": "Maroonut uses React Router, so you can bookmark any page and share links to certain modules directly." },
+          {
+            "src": "maroonut/login.png",
+            "caption": "You can log in to your own account, which allows you to view modules, post reviews on modules you've already completed, and even advertise yourself as a tutor for specific modules."
+          },
+          {
+            "text": "Note that user authentication was not fully implemented as it was not the focus during our short timeframe, but future versions would likely authenticate via Stellenbosch's existing database."
+          },
+          {
+            "src": "maroonut/modules.png",
+            "caption": "Once logged in, you can view all modules and even search for modules based on search terms to find what you're looking for."
+          },
+          {
+            "src": "maroonut/module.png",
+            "caption": "Every module has a dedicated page with the module's framework, lecture and tutorial hours, and the module's pre- and corequistes, which also act as buttons to direct you to those modules. The module rating is based off of an average of all reviewer's ratings of the module."
+          },
+          {
+            "src": "maroonut/reviews.png",
+            "caption": "Scrolling further down, you can view reviews for the module by people who have taken it in the past. This allows you to guage more about the module than a module framework allows, as you hear students' real world experience with the module to better advise you. If you've passed a module, you can give your own review on it, and rate it by clicking on the stars. Users can also gift and revoke 'acorns' to and from the review. Reviews are sorted descendingly by acorns so that the best reviews stay at the top."
+          },
+          {
+            "src": "maroonut/tutors.png",
+            "caption": "You can also see users who are tutoring for the module, showing a brief description of each tutor's service and their rate, as well as buttons to contact them via email and visit their profiles."
+          },
+          {
+            "src": "maroonut/profile.png",
+            "caption": "On a user's profile page, you can see how many acorns they've been gifted over reviews, modules taken and their outcomes, and modules they've reviewed or are tutoring for."
+          }
         ]
       },
-
-      { "name": "Reptile Park Volunteering",
-        "id":"volunteering",
+      {
+        "name": "Standard Bank Hackathon",
+        "id": "lab-hackathon",
+        "timeframe": "2023",
+        "brief": "Performed behavioural segmentation on taxi drivers.",
+        "icon": "TAXI"
+      }
+    ],
+    "scholarships_mentorship": [
+      {
+        "name": "Investec Tech Scholarship Mentorship",
+        "id": "investec",
+        "timeframe": "2024-present",
+        "brief": "At the end of my first year I was awarded a full cost scholarship with Investec which has funded me since my second year. After my honours, I will then be able to go work for them. During the scholarship I have networked with many people at the company and have learned a lot about industry from them.",
+        "icon": "INVEST"
+      }
+    ],
+    "creative_nontech": [
+      {
+        "name": "Transfer: The Severed System (My Novel)",
+        "id": "severed-system",
+        "timeframe": "2017-present",
+        "brief": "I have been working on a novel the past 8 years. I won a Gold Diploma for it in the Cape Town Writing Eisteddfod in 2021. I am working on publishing it. I have also written the first drafts for two sequels, and have plans for other works.",
+        "icon": "BOOK",
+        "points": [
+          {
+            "name": "Book Website",
+            "link": "https://ddylanrreid.wixsite.com/my-site",
+            "icon": "BOOK"
+          }
+        ]
+      },
+      {
+        "name": "Co-writer and Director of a One Act Play at Fairmont High",
+        "id": "erase-and-rewind",
+        "timeframe": "2022",
+        "brief": "I co-wrote and directed a 20-minute comedy play called 'Erase and Rewind' about a man who goes back in time to have reverse-hand-dryers removed from his childhood school, to prevent his life from being ruined. During his adventure, he loses his time machine, which appears like a tv remote. Two children find it and cause chaos with it, like pausing time, changing the languages of their friends, and reversing time. We won a silver award for it at a ceremony called 'Silwervaring Kunstefees.'",
+        "icon": "ART"
+      }
+    ],
+    "leadership_community": [
+      {
+        "name": "Reptile Park Volunteering",
+        "id": "volunteering",
         "timeframe": "2019-2020",
         "brief": "I spent some time volunteering at the reptile garden in Stodels, Durbanville. Responsibilities included feeding reptiles, cleaning reptile tanks, sweeping, raking the sand in the rock monitor pits, and helping wherever else needed.",
-        "icon": "SNAKE" }
-    ],
-
-    "leadership-roles": [
-      { "name": "Chairperson of Wildlife Society at Fairmont High",
-        "id":"wildlife",
+        "icon": "SNAKE"
+      },
+      {
+        "name": "Chairperson of Wildlife Society at Fairmont High",
+        "id": "wildlife",
         "timeframe": "2021",
         "brief": "In this role, I organized events like guest speakers, cleanups, and excursions for the society. During this time I designed a logo for fabric bags that we sold to promote fabric bags over plastic. I also ran an ecobrick campaign where we as a society made and collected about 30 ecobricks that were donated to the cause.",
-        "icon": "WILDLIFE" },
-
-      { "name": "Chairperson of Media Appreciation Society at Fairmont High",
-        "id":"media",
+        "icon": "WILDLIFE"
+      },
+      {
+        "name": "Chairperson of Media Appreciation Society at Fairmont High",
+        "id": "media",
         "timeframe": "2021",
         "brief": "My main endeavor in this role was to put together a video to promote the society. I was the society's first chairperson after it was born through the merging of multiple other societies, including the grapevine, a school magazine that I wrote for 4 times a year.",
         "icon": "MEDIA"
-      },
-
-      { "name": "Co-writer and Director of a One Act Play at Fairmont High",
-        "id":"erase-and-rewind",
-        "timeframe": "2022",
-        "brief": "I co-wrote and directed a 20-minute comedy play called 'Erase and Rewind' about a man who goes back in time to have reverse-hand-dryers removed from his childhood school, to prevent his life from being ruined. During his adventure, he loses his time machine, which appears like a tv remote. Two children find it and cause chaos with it, like pausing time, changing the languages of their friends, and reversing time. We won a silver award for it at a ceremony called 'Silwervaring Kunstefees.'",
-        "icon": "ART" }
+      }
     ]
   }
 }
