@@ -288,7 +288,7 @@
   height: 6.5rem;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid var(--border-color);
+  border: 5px ridge var(--border-blue);
   box-shadow: 0 12px 25px var(--c-black-35);
 }
 
