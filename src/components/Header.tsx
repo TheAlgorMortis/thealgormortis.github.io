@@ -227,19 +227,22 @@ function UserArea() {
     document.documentElement.classList.contains("light"),
   );
 
-  return (
-    <div className="userArea">
-      <button
-        className="userButton"
-        aria-pressed={isLight}
-        title="Toggle light/dark mode"
-        onClick={() => {
-          document.documentElement.classList.toggle("light");
-          setIsLight(document.documentElement.classList.contains("light"));
-        }}
-      >
-        <GrActions /> {isLight ? "Light" : "Dark"}
-      </button>
-    </div>
-  );
+  // TODO: Readd
+  return <></>;
+
+  /* return ( */
+  /*   <div className="userArea"> */
+  /*     <button */
+  /*       className="userButton" */
+  /*       aria-pressed={isLight} */
+  /*       title="Toggle light/dark mode" */
+  /*       onClick={() => { */
+  /*         document.documentElement.classList.toggle("light"); */
+  /*         setIsLight(document.documentElement.classList.contains("light")); */
+  /*       }} */
+  /*     > */
+  /*       <GrActions /> {isLight ? "Light" : "Dark"} */
+  /*     </button> */
+  /*   </div> */
+  /* ); */
 }

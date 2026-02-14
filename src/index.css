@@ -179,6 +179,8 @@ h5 {
   font-style: italic;
 }
 
+ul,
+li,
 div {
-  color: white;
+  color: var(--fg-color);
 }
