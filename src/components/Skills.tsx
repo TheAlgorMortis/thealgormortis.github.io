@@ -393,6 +393,16 @@ export default function Skills() {
           </h3>
         </div>
 
+        {/* Mobile bottom switch */}
+        <div className="skillsTabSwitchMobile">
+          <button
+            className="outerButton skillsTabButton skillsSwitchButton"
+            onClick={() => navigate(switchTarget)}
+          >
+            {switchLabel}
+          </button>
+        </div>
+
         {/* Grid */}
         <div className="skillSet">
           {list.map((entry: any) => (
@@ -404,16 +414,6 @@ export default function Skills() {
             />
           ))}
         </div>
-      </div>
-
-      {/* Mobile bottom switch */}
-      <div className="skillsTabSwitchMobile">
-        <button
-          className="outerButton skillsTabButton skillsSwitchButton"
-          onClick={() => navigate(switchTarget)}
-        >
-          {switchLabel}
-        </button>
       </div>
 
       {/* Modal overlay */}
@@ -463,7 +463,7 @@ function Card({
   entry: SkillItem | ExperienceItem;
   onOpen: () => void;
 }) {
-  const Icon = getIcon((entry as any).icon);
+  const Icon = getIcon(entry.icon);
 
   const isSkill = tab === "skills";
   const usedInCount = isSkill ? ((entry as SkillItem).usedIn?.length ?? 0) : 0;
@@ -482,14 +482,12 @@ function Card({
           )}
           <h3 className="skillsCardTitle">{entry.name}</h3>
         </div>
-        {(entry as any).timeframe && (
-          <div className="skillsCardMeta">{(entry as any).timeframe}</div>
+        {entry.timeframe && (
+          <div className="skillsCardMeta">{entry.timeframe}</div>
         )}
       </div>
 
-      {(entry as any).brief && (
-        <p className="skillsCardBrief">{(entry as any).brief}</p>
-      )}
+      {entry.brief && <p className="skillsCardBrief">{entry.brief}</p>}
 
       <div className="skillsCardActions">
         {showButton && (

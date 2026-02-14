@@ -552,10 +552,10 @@
 }
 
 .skillsCardMeta {
+  display: flex;
   font-size: 0.95rem;
   font-style: italic;
   opacity: 0.85;
-  white-space: nowrap;
 }
 
 /* Brief text */

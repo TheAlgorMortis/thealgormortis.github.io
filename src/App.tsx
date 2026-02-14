@@ -1,7 +1,9 @@
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Education from "./components/Education";
 import Skills from "./components/Skills";
+import Contact from "./components/Contact";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 
@@ -42,6 +44,9 @@ function App() {
               </Route>
             </Route>
 
+            {/* contact */}
+            <Route path="/contact" element={<Contact />} />
+
             {/* Not found */}
             <Route
               path="*"
@@ -58,6 +63,7 @@ function App() {
               }
             />
           </Routes>
+          <Footer />
         </div>
       </div>
     </BrowserRouter>

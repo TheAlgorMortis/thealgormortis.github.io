@@ -4,6 +4,7 @@ import profilePic from "../assets/profile.jpeg";
 import { useMatch, useNavigate } from "react-router-dom";
 
 /* icons */
+import { FaPhone } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HiAcademicCap } from "react-icons/hi2";
 import { LuKeyboard } from "react-icons/lu";
@@ -152,10 +153,12 @@ function NavArea({ onNavigate }: { onNavigate?: () => void }) {
   const isHome = !!useMatch("/home");
   const isEducation = !!useMatch("/education");
   const isSkills = !!useMatch("/skills/*");
+  const isContact = !!useMatch("/contact");
 
   const homeStyle = isHome ? "navSelected" : "navButton";
   const educationStyle = isEducation ? "navSelected" : "navButton";
   const skillsStyle = isSkills ? "navSelected" : "navButton";
+  const contactStyle = isContact ? "navSelected" : "navButton";
 
   const go = (path: string) => {
     navigate(path);
@@ -173,6 +176,9 @@ function NavArea({ onNavigate }: { onNavigate?: () => void }) {
         </button>
         <button className={skillsStyle} onClick={() => go("/skills")}>
           <LuKeyboard /> Skills/Experience
+        </button>
+        <button className={contactStyle} onClick={() => go("/contact")}>
+          <FaPhone /> Contact
         </button>
       </nav>
 
