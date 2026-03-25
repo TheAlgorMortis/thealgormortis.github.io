@@ -2,9 +2,14 @@
    App Layout
 ========================= */
 .App {
+  --header-offset: 0.75rem;
+  --header-gap: 1rem;
+
   display: grid;
   grid-template-rows: auto 1fr;
   min-height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 
   background-image: url("./assets/backdrop.png");
   background-size: cover;
@@ -13,12 +18,16 @@
   background-attachment: fixed;
 
   padding: 0.75rem;
+  padding-top: calc(
+    var(--header-offset) + var(--header-height, 0px) + var(--header-gap)
+  );
 }
 
 /* Main body container */
 .body {
   overflow: auto;
   overflow-x: hidden;
+  min-height: 0;
 
   padding: 1rem;
   width: 70%;
@@ -31,7 +40,12 @@
 /* Responsive */
 @media (max-width: 1080px) {
   .App {
+    --header-offset: 0.5rem;
+    --header-gap: 0.5rem;
     padding: 0.5rem;
+    padding-top: calc(
+      var(--header-offset) + var(--header-height, 0px) + var(--header-gap)
+    );
   }
 
   .body {

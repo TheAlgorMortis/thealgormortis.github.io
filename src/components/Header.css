@@ -2,6 +2,12 @@
    Header (glass container)
 ========================= */
 .header {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 4000;
+
   color: var(--fg-color);
   border: 4px ridge var(--border-blue);
   border-radius: var(--radius-md);
@@ -11,7 +17,7 @@
   justify-content: center;
   gap: 4rem;
 
-  width: 100%;
+  width: auto;
   margin: 0 auto;
   padding: 1rem;
 
@@ -384,6 +390,12 @@
     height: 3rem;
     padding-top: 0.1rem;
     font-weight: 900;
+  }
+
+  .header {
+    top: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
   }
 }
 

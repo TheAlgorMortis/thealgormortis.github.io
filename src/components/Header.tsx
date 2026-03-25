@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import profilePic from "../assets/profile.jpeg";
 import { useMatch, useNavigate } from "react-router-dom";
@@ -44,9 +44,31 @@ function useCloseOnEscape(open: boolean, onClose: () => void) {
  */
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement | null>(null);
 
   useLockBodyScroll(mobileMenuOpen);
   useCloseOnEscape(mobileMenuOpen, () => setMobileMenuOpen(false));
+
+  useLayoutEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const root = document.documentElement;
+    const updateHeaderHeight = () => {
+      root.style.setProperty("--header-height", `${header.offsetHeight}px`);
+    };
+
+    updateHeaderHeight();
+
+    const observer = new ResizeObserver(updateHeaderHeight);
+    observer.observe(header);
+    window.addEventListener("resize", updateHeaderHeight);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateHeaderHeight);
+    };
+  }, []);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
@@ -88,7 +110,7 @@ export default function Header() {
     : null;
 
   return (
-    <header className="header">
+    <header ref={headerRef} className="header">
       {/* Desktop */}
       <div className="desktopHeader">
         <ProfilePic />
