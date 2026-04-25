@@ -323,7 +323,7 @@
 
   font-weight: 800;
   letter-spacing: 0.15px;
-  font-size: 1.2rem;
+  font-size: 1.08rem;
   text-decoration: none;
 
   transition:
@@ -1010,8 +1010,12 @@
    Responsive
 ========================= */
 @media (max-width: 1080px) {
+  .bigSectionBlock {
+    font-size: 1.15rem;
+  }
+
   .sectionBlock {
-    font-size: 1rem;
+    font-size: 0.92rem;
   }
 
   .splitTwo,
@@ -1028,19 +1032,33 @@
   }
 
   .sectionHeading {
-    font-size: 1.35rem;
+    font-size: 1.18rem;
   }
 
   .outerButton {
-    font-size: 1rem;
+    font-size: 0.76rem;
   }
 
   .sectionSubHeading {
-    font-size: 1.15rem;
+    font-size: 1.08rem;
   }
 
   .ppHome {
     width: 100%;
+  }
+
+  .siteFooter {
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    transform: none;
+    width: auto;
+    max-width: none;
+    padding: 0.45rem 0.8rem;
+  }
+
+  .siteFooter h4 {
+    font-size: 0.82rem;
   }
 
   .skillsSwitchButton {

@@ -489,6 +489,15 @@
     flex-wrap: wrap;
   }
 
+  .navButton,
+  .navSelected {
+    font-size: 0.85rem;
+  }
+
+  .navLink {
+    font-size: 0.76rem;
+  }
+
   .burger {
     border-color: var(--btn-border);
     border-radius: 50%;

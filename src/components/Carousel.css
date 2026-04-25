@@ -8,6 +8,7 @@
   overflow: hidden;
   width: 100%;
   border-radius: var(--radius-md);
+  touch-action: pan-y;
 }
 
 .carouselTrack {
@@ -27,6 +28,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.65rem;
+  min-height: 1.25rem;
 }
 
 .carouselDot {
@@ -55,4 +57,20 @@
 .carouselDot:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
+}
+
+@media (max-width: 1080px) {
+  .carousel {
+    gap: 0.55rem;
+  }
+
+  .carouselDots {
+    gap: 0.8rem;
+    padding-bottom: 0.15rem;
+  }
+
+  .carouselDot {
+    width: 0.95rem;
+    height: 0.95rem;
+  }
 }

@@ -5,6 +5,7 @@ import {
   useEffect,
   useEffectEvent,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import "./Carousel.css";
@@ -64,6 +65,8 @@ export default function Carousel({
   const paneCount = panes.length;
   const [activeIndex, setActiveIndex] = useState(0);
   const [autoAdvanceEnabled, setAutoAdvanceEnabled] = useState(true);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
 
   useEffect(() => {
     if (paneCount === 0) {
@@ -76,6 +79,12 @@ export default function Carousel({
 
   const advanceSlide = useEffectEvent(() => {
     setActiveIndex((currentIndex) => (currentIndex + 1) % paneCount);
+  });
+
+  const goToPreviousSlide = useEffectEvent(() => {
+    setActiveIndex(
+      (currentIndex) => (currentIndex - 1 + paneCount) % paneCount,
+    );
   });
 
   useEffect(() => {
@@ -106,7 +115,49 @@ export default function Carousel({
       aria-roledescription="carousel"
       className={rootClassName}
     >
-      <div className="carouselViewport">
+      <div
+        className="carouselViewport"
+        onTouchEnd={(event) => {
+          if (paneCount < 2) return;
+
+          const startX = touchStartX.current;
+          const startY = touchStartY.current;
+          const endX = event.changedTouches[0]?.clientX;
+          const endY = event.changedTouches[0]?.clientY;
+
+          touchStartX.current = null;
+          touchStartY.current = null;
+
+          if (
+            startX === null ||
+            startY === null ||
+            endX === undefined ||
+            endY === undefined
+          ) {
+            return;
+          }
+
+          const deltaX = endX - startX;
+          const deltaY = endY - startY;
+
+          if (Math.abs(deltaX) < 40 || Math.abs(deltaX) <= Math.abs(deltaY)) {
+            return;
+          }
+
+          setAutoAdvanceEnabled(false);
+
+          if (deltaX < 0) {
+            advanceSlide();
+            return;
+          }
+
+          goToPreviousSlide();
+        }}
+        onTouchStart={(event) => {
+          touchStartX.current = event.touches[0]?.clientX ?? null;
+          touchStartY.current = event.touches[0]?.clientY ?? null;
+        }}
+      >
         <div className="carouselTrack" style={trackStyle}>
           {panes.map((pane, index) => (
             <div
