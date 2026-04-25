@@ -1,17 +1,16 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import profilePic from "../assets/profile.jpeg";
 import { useMatch, useNavigate } from "react-router-dom";
 
 /* icons */
 import { FaPhone } from "react-icons/fa";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu, GiSkills } from "react-icons/gi";
 import { HiAcademicCap } from "react-icons/hi2";
 import { LuKeyboard } from "react-icons/lu";
 import { IoIosHome } from "react-icons/io";
-import { FaFileDownload, FaGithub, FaBook, FaCode } from "react-icons/fa";
+import { FaFileDownload, FaGithub, FaCode } from "react-icons/fa";
 import { FaLinkedin, FaXmark } from "react-icons/fa6";
-import { GrActions } from "react-icons/gr";
 
 /* Styles */
 import "./Header.css";
@@ -44,10 +43,12 @@ function useCloseOnEscape(open: boolean, onClose: () => void) {
  */
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [profileModalOpen, setProfileModalOpen] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
 
-  useLockBodyScroll(mobileMenuOpen);
+  useLockBodyScroll(mobileMenuOpen || profileModalOpen);
   useCloseOnEscape(mobileMenuOpen, () => setMobileMenuOpen(false));
+  useCloseOnEscape(profileModalOpen, () => setProfileModalOpen(false));
 
   useLayoutEffect(() => {
     const header = headerRef.current;
@@ -71,6 +72,7 @@ export default function Header() {
   }, []);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
+  const closeProfileModal = () => setProfileModalOpen(false);
 
   // Render the mobile overlay into document.body to avoid z-index / stacking-context issues.
   const mobileMenu = mobileMenuOpen
@@ -109,11 +111,46 @@ export default function Header() {
       )
     : null;
 
+  const profileModal = profileModalOpen
+    ? createPortal(
+        <div
+          className="profileModalOverlay"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) closeProfileModal();
+          }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Profile picture"
+        >
+          <div
+            className="profileModalContent"
+            onMouseDown={(e) => e.stopPropagation()}
+          >
+            <button
+              className="profileModalClose"
+              onClick={closeProfileModal}
+              aria-label="Close profile picture"
+              title="Close"
+              type="button"
+            >
+              <FaXmark />
+            </button>
+            <img
+              src={profilePic}
+              className="profileModalImage"
+              alt="Dylan Reid profile"
+            />
+          </div>
+        </div>,
+        document.body,
+      )
+    : null;
+
   return (
     <header ref={headerRef} className="header">
       {/* Desktop */}
       <div className="desktopHeader">
-        <ProfilePic />
+        <ProfilePic onOpen={() => setProfileModalOpen(true)} />
         <ProfileArea />
         <NavArea onNavigate={undefined} />
         <UserArea />
@@ -122,7 +159,7 @@ export default function Header() {
       {/* Mobile taskbar */}
       <div className="mobileHeader">
         <div className="mobileTaskbar">
-          <ProfilePic />
+          <ProfilePic onOpen={() => setProfileModalOpen(true)} />
           <ProfileArea />
           <button
             className="burger"
@@ -136,6 +173,7 @@ export default function Header() {
       </div>
 
       {mobileMenu}
+      {profileModal}
     </header>
   );
 }
@@ -158,10 +196,18 @@ function ProfileArea() {
 /**
  * component showing profile picture
  */
-function ProfilePic() {
+function ProfilePic({ onOpen }: { onOpen: () => void }) {
   return (
     <div className="userArea">
-      <img src={profilePic} className="profilePic" alt="Profile" />
+      <button
+        className="profilePicButton"
+        onClick={onOpen}
+        aria-label="Open profile picture"
+        title="Open profile picture"
+        type="button"
+      >
+        <img src={profilePic} className="profilePic" alt="Profile" />
+      </button>
     </div>
   );
 }
@@ -173,13 +219,15 @@ function NavArea({ onNavigate }: { onNavigate?: () => void }) {
   const navigate = useNavigate();
 
   const isHome = !!useMatch("/home");
-  const isEducation = !!useMatch("/education");
+  const isEducation = !!useMatch("/education/*");
   const isSkills = !!useMatch("/skills/*");
+  const isExperience = !!useMatch("/experience/*");
   const isContact = !!useMatch("/contact");
 
   const homeStyle = isHome ? "navSelected" : "navButton";
   const educationStyle = isEducation ? "navSelected" : "navButton";
   const skillsStyle = isSkills ? "navSelected" : "navButton";
+  const experienceStyle = isExperience ? "navSelected" : "navButton";
   const contactStyle = isContact ? "navSelected" : "navButton";
 
   const go = (path: string) => {
@@ -193,11 +241,17 @@ function NavArea({ onNavigate }: { onNavigate?: () => void }) {
         <button className={homeStyle} onClick={() => go("/home")}>
           <IoIosHome /> Home
         </button>
-        <button className={educationStyle} onClick={() => go("/education")}>
+        <button className={educationStyle} onClick={() => go("/education/uni")}>
           <HiAcademicCap /> Education
         </button>
-        <button className={skillsStyle} onClick={() => go("/skills")}>
-          <LuKeyboard /> Skills/Experience
+        <button className={skillsStyle} onClick={() => go("/skills/languages")}>
+          <GiSkills /> Skills
+        </button>
+        <button
+          className={experienceStyle}
+          onClick={() => go("/experience/teaching_assistant")}
+        >
+          <LuKeyboard /> Experience
         </button>
         <button className={contactStyle} onClick={() => go("/contact")}>
           <FaPhone /> Contact
@@ -205,7 +259,12 @@ function NavArea({ onNavigate }: { onNavigate?: () => void }) {
       </nav>
 
       <nav className="nav">
-        <a className="navLink" href="./CV.pdf" download="CV-Dylan-Reid">
+        <a
+          className="navLink"
+          href="/CV.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaFileDownload />
           CV
         </a>
@@ -227,15 +286,6 @@ function NavArea({ onNavigate }: { onNavigate?: () => void }) {
           <FaLinkedin />
           Linkedin
         </a>
-        <a
-          className="navLink"
-          href="https://ddylanrreid.wixsite.com/my-site"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaBook />
-          My Writing
-        </a>
       </nav>
     </div>
   );
@@ -245,10 +295,6 @@ function NavArea({ onNavigate }: { onNavigate?: () => void }) {
  * The user area of the header.
  */
 function UserArea() {
-  const [isLight, setIsLight] = useState(() =>
-    document.documentElement.classList.contains("light"),
-  );
-
   // TODO: Readd
   return <></>;
 

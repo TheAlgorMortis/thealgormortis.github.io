@@ -4,12 +4,12 @@ import "./Bodies.css";
  *
  * @component
  *
- * @returns {JSX.Element} The rendered header component.
+ * @returns {JSX.Element} The rendered Footer component.
  */
 export default function Footer() {
   return (
-    <div className="sectionBlock">
-      <h4> @copyright. Web design by Dylan Reid </h4>
+    <div className="siteFooter">
+      <h4>Copyright. Website design by Dylan Reid.</h4>
     </div>
   );
 }

@@ -31,6 +31,28 @@
   --radius-lg: 1.8rem;
 
   /* =========================================
+  New colours
+  ========================================= */
+  --site-background: #020012;
+  --light-accent: #4fafff;
+  --fire-accent: #ff9900;
+  --burnt-accent: #ff4500;
+  --pink-accent: #ff49f9;
+  --purple-accent: #9a6bff;
+  --accent-border: #0040a7;
+  --fg-color: #eeddee;
+  --bg-btn: #2b4fb8;
+  /* --light-accent: #0075a9; */
+
+  /*
+   *
+   *
+   *
+   *
+   *
+   */
+
+  /* =========================================
      Core colours (used by Bodies.css + Header.css)
   ========================================= */
   /* Surfaces */
@@ -40,18 +62,16 @@
   --section-subheading: #251960;
 
   /* Buttons */
-  --bg-btn: #777700;
   --btn-hover: #ff49f9;
 
   /* Borders */
   --border-blue: #0075a9;
   --border-h1: #ffffff;
-  --border-btn: #ff9900;
+  --border-btn: #9a6bff;
   --border-color: #0040a7;
   --btn-border: #00a0a7;
 
   /* Text */
-  --fg-color: #eeddee;
   --fg-hover: #000000;
 
   /* Nav + tags */
@@ -150,6 +170,12 @@
 html {
   font-size: 90%;
   scroll-behavior: smooth;
+}
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 85%;
+  }
 }
 
 body {

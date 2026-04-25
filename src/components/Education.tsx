@@ -1,8 +1,9 @@
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import fullMarks from "../assets/marks.json";
 import "./Bodies.css";
 
 /* Icon imports */
-import { HiAcademicCap } from "react-icons/hi2";
 import { FaUniversity } from "react-icons/fa";
 import { BiSolidBusSchool } from "react-icons/bi";
 import { ImStatsDots } from "react-icons/im";
@@ -15,7 +16,6 @@ import { MdOutlineScience } from "react-icons/md";
 import { FaJava } from "react-icons/fa";
 import { TbMatrix } from "react-icons/tb";
 import { IoEyeSharp } from "react-icons/io5";
-import { SiTmux } from "react-icons/si";
 import {
   SiNeovim,
   SiJupyter,
@@ -82,133 +82,89 @@ type Marks = {
   icon: string;
 };
 
+type UniversityYearKey = "year1" | "year2" | "year3" | "honours";
+
+type UniversityYearConfig = {
+  buttonLabel: string;
+  marks1: Marks[];
+  marks2: Marks[];
+};
+
+const universityMarksByYear: Record<UniversityYearKey, UniversityYearConfig> = {
+  year1: {
+    buttonLabel: "1st year",
+    marks1: fullMarks.year1sem1,
+    marks2: fullMarks.year1sem2,
+  },
+  year2: {
+    buttonLabel: "2nd year",
+    marks1: fullMarks.year2sem1,
+    marks2: fullMarks.year2sem2,
+  },
+  year3: {
+    buttonLabel: "3rd year",
+    marks1: fullMarks.year3sem1,
+    marks2: fullMarks.year3sem2,
+  },
+  honours: {
+    buttonLabel: "Honours",
+    marks1: fullMarks.Honours1,
+    marks2: fullMarks.Honours2,
+  },
+};
+
 /**
  * The Education component
  */
 export default function Education() {
+  const { pathname } = useLocation();
+  const isHighSchool = pathname === "/education/highschool";
+
   return (
-    <>
-      <h1 className="sectionHeading">
-        University <FaUniversity />
-      </h1>
-      <div className="sectionBlock">
-        <h2 className="sectionBlockHeading">BSc (Hons) Computer Science</h2>
-        <p>
-          In 2026, I am studying my honours in Computer Science at Stellenbosch
-          University. I am being funded through the Investec Tech Scholarship,
-          as I was during the latter two years of my undergraduate degree.
-        </p>
-        <p>
-          In my honours year, I will be doing a year-long Software Engineering
-          project under the Supervision of Professor Lynette can Zijl. In this
-          project, I will be using Computer Vision to scan images of LEGO
-          instruction manuals, then generate animations of the LEGO set
-          construction in Unity.
-        </p>
-        <p>
-          This year, I will be working as a head project demi for a first year
-          computer science, as well as a general demi for a third year machine
-          learning module. Click the links below for more details on this.
-        </p>
-        <div className="flexRow">
-          <a
-            href="http://localhost:5173/skills/experience/employment/demi-project"
-            className="outerButton"
+    <>{isHighSchool ? <HighSchool hsMarks={fullMarks.NSC} /> : <UniPanel />}</>
+  );
+}
+
+/**
+ * Button-driven university marks viewer.
+ * Only the selected academic year is shown beneath the button row.
+ */
+function UniversityMarksSwitcher() {
+  const [activeYear, setActiveYear] = useState<UniversityYearKey>("year1");
+  const activeConfig = universityMarksByYear[activeYear];
+
+  return (
+    <div className="universityMarksSwitcher">
+      <div className="yearSelectorRow">
+        {(
+          Object.entries(universityMarksByYear) as [
+            UniversityYearKey,
+            UniversityYearConfig,
+          ][]
+        ).map(([yearKey, yearConfig]) => (
+          <button
+            aria-pressed={activeYear === yearKey}
+            className={`outerButton yearSelectorButton ${
+              activeYear === yearKey ? " isSelected" : ""
+            }`}
+            key={yearKey}
+            onClick={() => setActiveYear(yearKey)}
+            type="button"
           >
-            Project Demi Experience
-          </a>
-          <a
-            href="http://localhost:5173/skills/experience/employment/demi-ml"
-            className="outerButton"
-          >
-            Machine Learning Demi Experience
-          </a>
-        </div>
+            {yearConfig.buttonLabel}
+          </button>
+        ))}
       </div>
       <UniMarksPanel
-        year={"Honours Modules"}
-        marks1={fullMarks.Honours1}
-        marks2={fullMarks.Honours2}
+        marks1={activeConfig.marks1}
+        marks2={activeConfig.marks2}
       />
-      <div className="sectionBlock">
-        <h2 className="sectionBlockHeading">
-          BSc Computer Science (cum laude)
-        </h2>
-        <p>
-          I currently hold a BSc Computer science (cum laude) from Stellenbosch
-          university. Throughout my bachelors, I learned many skills that can be
-          viewed on the Skills/Experience section of the website. Below I list
-          the modules that I have done during the course, and their respective
-          marks.
-        </p>
-        <p>
-          During my studies, I was awarded a full cost scholarship by Investec
-          Bank for my high academic achievement, allowing me to continue my
-          studies from my second year onwards. After finishing my honours year,
-          I will also be working for them.
-        </p>
-        <div className="flexRow">
-          <a
-            className="outerButton flexRow"
-            href="./AcademicRecord.pdf"
-            download="Academic-Record-Dylan-Reid"
-          >
-            <FaFileDownload />
-            Download my Academic Record{" "}
-          </a>
-          <a
-            className="outerButton flexRow"
-            href="./BSC.pdf"
-            download="BSC-Dylan-Reid"
-          >
-            <FaFileDownload />
-            Download my BSc Certificate{" "}
-          </a>
-        </div>
-      </div>
-      <UniMarksPanel
-        year={"3rd Year"}
-        marks1={fullMarks.year3sem1}
-        marks2={fullMarks.year3sem2}
-      />
-      <UniMarksPanel
-        year={"2nd Year"}
-        marks1={fullMarks.year2sem1}
-        marks2={fullMarks.year2sem2}
-      />
-      <UniMarksPanel
-        year={"1st Year"}
-        marks1={fullMarks.year1sem1}
-        marks2={fullMarks.year1sem2}
-      />
-      <h1 className="sectionHeading">
-        High School <BiSolidBusSchool />
-      </h1>
-      <div className="sectionBlock">
-        <h2 className="sectionBlockHeading">School Experience</h2>
-        <p>
-          I attended Fairmont High School, where I was first exposed to software
-          development through Information Technology. From then, I always knew I
-          was going to study software engineering.
-        </p>
-        <p>
-          I came 7th place in my school for my matric result with an average of
-          88,4%. I was awarded academic honours in Gr 12 and 11, and academic
-          colours in Gr 10. My marks are shown below.
-        </p>
-        <a className="outerButton" href="./NSC.pdf" download="NSC-Dylan-Reid">
-          <FaFileDownload />
-          Download my NSC{" "}
-        </a>
-      </div>
-      <NscMarks marks={fullMarks.NSC} />
-    </>
+    </div>
   );
 }
 
 /** types for the Uni marks panel */
 type UniMarksPanelProps = {
-  year: string;
   marks1: Marks[];
   marks2: Marks[];
 };
@@ -216,14 +172,11 @@ type UniMarksPanelProps = {
 /**
  * A panel for university marks
  */
-function UniMarksPanel({ year, marks1, marks2 }: UniMarksPanelProps) {
+function UniMarksPanel({ marks1, marks2 }: UniMarksPanelProps) {
   return (
-    <div className="sectionBlock">
-      <h2 className="sectionBlockHeading"> {year}</h2>
-      <div className="semesterGroup">
-        <SemesterMarksPanel number={"1"} marks={marks1} />
-        <SemesterMarksPanel number={"2"} marks={marks2} />
-      </div>
+    <div className="splitTwoEven yearMarksGrid">
+      <SemesterMarksPanel number={"1"} marks={marks1} />
+      <SemesterMarksPanel number={"2"} marks={marks2} />
     </div>
   );
 }
@@ -239,7 +192,7 @@ type SemesterMarksPanelProps = {
  */
 function SemesterMarksPanel({ number, marks }: SemesterMarksPanelProps) {
   return (
-    <div className="semester">
+    <div className="borderBox">
       <h3 className="sectionBlockHeading">Semester {number}</h3>
       <MarksMap marks={marks} />
     </div>
@@ -251,8 +204,8 @@ function SemesterMarksPanel({ number, marks }: SemesterMarksPanelProps) {
  */
 function NscMarks({ marks }: MarksMapProps) {
   return (
-    <div className="sectionBlock">
-      <h2 className="sectionBlockHeading">NSC Final Marks</h2>
+    <div className="borderBox">
+      <h2 className="sectionSubHeading">NSC Final Marks</h2>
       <div className="semester">
         <MarksMap marks={marks} />
       </div>
@@ -272,7 +225,7 @@ function MarksMap({ marks }: MarksMapProps) {
   return (
     <ul>
       {marks.map((mark) => {
-        const Icon = componentMap[mark.icon];
+        const Icon = componentMap[mark.icon as keyof typeof componentMap];
         return (
           <li
             key={mark.id}
@@ -286,5 +239,126 @@ function MarksMap({ marks }: MarksMapProps) {
         );
       })}
     </ul>
+  );
+}
+
+/**
+ * Props for the High school component
+ */
+type HighSchoolProps = {
+  hsMarks: Marks[];
+};
+
+function HighSchool({ hsMarks }: HighSchoolProps) {
+  return (
+    <>
+      <h1 className="sectionHeading">
+        <BiSolidBusSchool className="bigIcon" />
+        High School
+      </h1>
+      <div className="educationSwitchRow">
+        <Link className="outerButton educationSwitchButton" to="/education/uni">
+          Switch to University
+        </Link>
+      </div>
+      <div className="splitTwoEven">
+        <div className="borderBox">
+          <div>
+            <h2 className="sectionSubHeading">School Experience</h2>
+            <p>
+              I attended Fairmont High School, where I was first exposed to
+              software development through Information Technology. From then, I
+              always knew I was going to study software engineering.
+            </p>
+            <p>
+              I placed 7th in my school for my matric result, with an average of
+              88.4%. I was awarded academic honours in Grades 12 and 11, and
+              academic colours in Grade 10. My marks are shown below.
+            </p>
+            <a
+              className="outerButton"
+              href="/NSC.pdf"
+              download="NSC-Dylan-Reid"
+            >
+              <FaFileDownload />
+              Download my NSC{" "}
+            </a>
+          </div>
+        </div>
+        <NscMarks marks={hsMarks} />
+      </div>
+    </>
+  );
+}
+
+function UniPanel() {
+  return (
+    <>
+      <h1 className="sectionHeading">
+        <FaUniversity className="bigIcon" />
+        University
+      </h1>
+      <div className="educationSwitchRow">
+        <Link
+          className="outerButton educationSwitchButton"
+          to="/education/highschool"
+        >
+          Switch to High School
+        </Link>
+      </div>
+      <div className="splitTwoEven">
+        <div className="borderBox">
+          <h2 className="sectionSubHeading">BSc (Hons) Computer Science</h2>
+          <p>
+            In 2026, I am studying my honours in Computer Science at
+            Stellenbosch University. I am currently working on my honours
+            project, which involves generating 3D animations of LEGO instruction
+            animations from the official PDF instructions. I am under the
+            supervision of Professor Lynette van Zijl.
+          </p>
+          <p>
+            This year, I will be working as the head project demi for a
+            first-year Computer Science module, as well as a general demi for a
+            third-year Machine Learning module.
+          </p>
+        </div>
+        <div className="borderBox">
+          <h2 className="sectionSubHeading">
+            BSc Computer Science (cum laude)
+          </h2>
+          <p>
+            I currently hold a BSc in Computer Science (cum laude) from
+            Stellenbosch University.
+          </p>
+          <p>
+            During my studies, I was awarded a full cost scholarship by Investec
+            Bank for my high academic achievement, allowing me to continue my
+            studies from my second year onwards. After finishing my honours
+            year, I will also be working for them.
+          </p>
+          <div className="flexRow">
+            <a
+              className="outerButton"
+              href="/AcademicRecord.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFileDownload />
+              Academic Transcript
+            </a>
+            <a
+              className="outerButton"
+              href="/BSC.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFileDownload />
+              BSc Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+      <UniversityMarksSwitcher />
+    </>
   );
 }

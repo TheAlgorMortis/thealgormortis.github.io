@@ -1,10 +1,6 @@
 /* =========================
    Shared “Glass” surfaces
 ========================= */
-.sectionHeading,
-.sectionSubHeading,
-.sectionBlock,
-.sectionBlockHeading,
 .blogInfo,
 .blogFilters,
 .blogPicture,
@@ -26,17 +22,12 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 4px ridge var(--border-h1);
-
   color: var(--fg-color);
-  background-color: var(--bg-h1);
-
+  font-size: 2.2rem;
   padding: 0.3rem 0.3rem;
   font-weight: 900;
-
-  transition:
-    background 0.2s,
-    transform 0.1s;
+  border: 3px solid var(--accent-border);
+  border-radius: 16px;
 }
 
 .sectionSubHeading {
@@ -45,15 +36,20 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  color: var(--fire-accent);
+  font-size: 1.8rem;
+  padding: 0.05rem 0.2rem;
+}
 
-  color: var(--fg-color);
-  background-color: var(--section-subheading);
+.bigIcon {
+  color: var(--light-accent);
+}
+.sshIcon {
+  color: var(--burnt-accent);
+}
 
-  padding: 0.6rem 0.9rem;
-  margin: 0.5rem 0;
-  transition:
-    background 0.2s,
-    transform 0.1s;
+.achIcon {
+  color: var(--purple-accent);
 }
 
 .sectionBlockHeading {
@@ -64,8 +60,7 @@
   text-align: center;
   width: 100%;
 
-  color: var(--fg-color);
-  background-color: var(--bg-sec-block-heading);
+  color: var(--pink-accent);
 
   padding: 0.2rem 0.4rem;
   transition:
@@ -74,15 +69,16 @@
 }
 
 /* =========================
-   Section blocks
+   Paragraphs
 ========================= */
-.sectionBlock {
+
+.bigSectionBlock {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.1rem;
 
-  font-size: 1.1rem;
-  font-weight: 950;
+  font-size: 1.6rem;
+  font-weight: 100;
   color: var(--fg-color);
 
   padding: 0.9rem 1rem;
@@ -93,6 +89,164 @@
     transform 0.1s;
   flex-grow: 1;
 }
+.sectionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+
+  font-size: 1.2rem;
+  font-weight: 100;
+  color: var(--fg-color);
+
+  padding: 0.9rem 1rem;
+  margin: 0.5rem 0;
+
+  transition:
+    background 0.2s,
+    transform 0.1s;
+  flex-grow: 1;
+}
+
+.siteFooter {
+  position: fixed;
+  left: 50%;
+  bottom: 0.75rem;
+  transform: translateX(-50%);
+  z-index: 3000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: max-content;
+  max-width: calc(100vw - 1.5rem);
+  margin: 0 auto;
+  padding: 0.55rem 1rem;
+
+  color: var(--fg-color);
+  background: var(--bg-black);
+  border: 2px solid var(--accent-border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  text-align: center;
+}
+
+.siteFooter h4 {
+  margin: 0;
+}
+
+.splitTwo {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  text-align: left;
+  gap: 3rem;
+}
+
+.splitTwoEven {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: left;
+  gap: 0.5rem;
+}
+
+.yearSelectorRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0.1rem 0 0.55rem;
+}
+
+.universityMarksSwitcher {
+  margin-top: 0.15rem;
+}
+
+.outerButton.yearSelectorButton {
+  margin: 0;
+  background:
+    linear-gradient(180deg, var(--c-white-18), var(--c-black-35)),
+    var(--bg-sec-block-heading);
+  border-color: var(--btn-border);
+}
+
+.outerButton.yearSelectorButton.isSelected {
+  background:
+    linear-gradient(180deg, var(--c-white-18), var(--c-black-35)), var(--bg-btn);
+  border-color: var(--btn-border);
+  box-shadow:
+    inset 0 1px 0 var(--c-white-18),
+    0 12px 22px var(--c-black-35),
+    0 0 0 1px var(--c-cyan-45);
+  filter: saturate(1.08) brightness(1.04);
+}
+
+.educationSwitchRow {
+  display: flex;
+  justify-content: center;
+  margin: 0.35rem 0 0.75rem;
+}
+
+.educationSwitchButton {
+  width: auto;
+  min-width: 16rem;
+  margin: 0;
+  padding-inline: 1.4rem;
+}
+
+.yearMarksPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.yearMarksGrid {
+  width: 100%;
+}
+
+.yearMarksGrid .borderBox {
+  margin: 0;
+}
+
+.borderBox {
+  border: 3px solid var(--accent-border);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+
+  font-size: 1.2rem;
+  font-weight: 100;
+  color: var(--fg-color);
+
+  padding: 0.9rem 1rem;
+  margin: 0.5rem 0;
+
+  transition:
+    background 0.2s,
+    transform 0.1s;
+  flex-grow: 1;
+}
+
+/* =========================
+   Images
+========================= */
+
+.ppHome {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+
+  border: 3px solid var(--accent-border);
+  border-radius: 16px;
+}
+
+/* =========================
+   Headings
+========================= */
+
+/* NOTE: OLD */
 
 /* =========================
    Blog info + filters
@@ -158,23 +312,27 @@
 .delButton {
   color: var(--fg-color);
   background:
-    linear-gradient(180deg, var(--c-white-40), var(--c-black-40)), var(--bg-btn);
+    linear-gradient(180deg, var(--c-white-18), var(--c-black-35)), var(--bg-btn);
 
-  border: 5px ridge var(--border-btn);
-  border-radius: var(--radius-lg);
+  border: 2px solid var(--border-btn);
+  border-radius: 999px;
   box-shadow:
-    var(--shadow-inset),
-    0 8px 14px var(--c-black-30);
+    inset 0 1px 0 var(--c-white-18),
+    0 10px 18px var(--c-black-35),
+    0 0 0 1px var(--c-black-18);
 
   font-weight: 800;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.15px;
   font-size: 1.2rem;
+  text-decoration: none;
 
   transition:
-    transform 0.08s ease,
+    transform 0.14s ease,
     background 0.18s ease,
     box-shadow 0.18s ease,
-    filter 0.18s ease;
+    filter 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
   cursor: pointer;
 }
 
@@ -189,19 +347,19 @@
 
 /* sizing */
 .sectionButton {
-  padding: 0.55rem 0.9rem;
+  padding: 0.62rem 1rem;
 }
 
 .outerButton {
   width: 100%;
   margin: 0.5rem 0rem;
-  padding: 0.6rem 0.9rem;
+  padding: 0.7rem 1rem;
   text-align: center;
   gap: 1rem;
 }
 
 .sectionButtonLeft {
-  padding: 0.35rem 0.7rem;
+  padding: 0.48rem 0.82rem;
 }
 
 /* Blog add picture button */
@@ -232,12 +390,16 @@
 .addPicture:hover,
 .delButton:hover {
   background:
-    linear-gradient(180deg, var(--c-white-40), var(--c-black-40)),
+    linear-gradient(180deg, var(--c-white-18), var(--c-black-35)),
     var(--btn-hover);
   box-shadow:
-    var(--shadow-inset),
-    0 0px 8px var(--c-blue-90);
-  filter: saturate(1.05);
+    inset 0 1px 0 var(--c-white-18),
+    0 12px 22px var(--c-black-35),
+    0 0 0 1px var(--c-cyan-45);
+  border-color: var(--btn-border);
+  color: var(--fg-hover);
+  filter: saturate(1.05) brightness(1.03);
+  transform: translateY(-1px);
 }
 
 .sectionButton:active,
@@ -245,9 +407,9 @@
 .sectionButtonLeft:active,
 .addPicture:active,
 .delButton:active {
-  transform: translateY(1px) scale(0.99);
+  transform: translateY(0) scale(0.985);
   box-shadow:
-    inset 0 1px 0 var(--c-magenta-10),
+    inset 0 2px 6px var(--c-black-30),
     0 6px 14px var(--c-black-25);
 }
 
@@ -502,7 +664,7 @@
   color: var(--fg-color);
 
   background-color: var(--c-black-22);
-  border: 3px ridge var(--c-cyan-45);
+  border: 3px ridge var(--accent-border);
   border-radius: var(--radius-md);
 
   padding: 0.9rem 0.95rem;
@@ -541,6 +703,7 @@
   display: inline-flex;
   font-size: 1.35rem;
   opacity: 0.95;
+  color: var(--burnt-accent);
 }
 
 .skillsCardTitle {
@@ -548,6 +711,7 @@
   font-size: 1.25rem;
   font-weight: 900;
   line-height: 1.15;
+  color: var(--fire-accent);
 }
 
 .skillsCardMeta {
@@ -571,6 +735,7 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 0.5rem;
+  margin-top: auto;
 }
 
 .skillsCardButton {
@@ -594,7 +759,6 @@
 
 .skillsPoint {
   background: var(--c-black-18);
-  border: 2px solid var(--c-white-12);
   border-radius: var(--radius-md);
   padding: 0.65rem 0.75rem;
   box-shadow: var(--shadow-inset);
@@ -613,6 +777,14 @@
 }
 
 .skillsPointImage img {
+  border: 2px solid var(--site-background);
+  border-radius: var(--radius-md);
+}
+
+.skillsPointVideo video {
+  display: block;
+  width: 100%;
+  border: 2px solid var(--site-background);
   border-radius: var(--radius-md);
 }
 
@@ -842,6 +1014,11 @@
     font-size: 1rem;
   }
 
+  .splitTwo,
+  .splitTwoEven {
+    grid-template-columns: 1fr;
+  }
+
   .skillSet {
     grid-template-columns: 1fr;
   }
@@ -860,6 +1037,10 @@
 
   .sectionSubHeading {
     font-size: 1.15rem;
+  }
+
+  .ppHome {
+    width: 100%;
   }
 
   .skillsSwitchButton {
@@ -955,7 +1136,7 @@
 .skillsModalBackdrop {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 6000;
   background: var(--c-black-62);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -972,7 +1153,7 @@
   overflow: auto;
 
   background: var(--c-black-82);
-  border: 4px ridge var(--c-magenta-35);
+  border: 4px ridge var(--accent-border);
   border-radius: var(--radius-md);
   box-shadow:
     var(--shadow-soft),

@@ -40,6 +40,22 @@
         ]
       },
       {
+        "name": "C#",
+        "id": "csharp",
+        "timeframe": "since 2026",
+        "brief": "Used to build a compiler-like program and related utilities for a custom language for my honours project.",
+        "icon": "CSHARP",
+        "usedIn": [{ "category": "projects_university", "id": "LLL" }]
+      },
+      {
+        "name": "Haskell",
+        "id": "haskell",
+        "timeframe": "since 2026",
+        "brief": "Core language used for our functional programming course. Implemented Game Of Life in Haskell.",
+        "icon": "HASKELL",
+        "usedIn": [{ "category": "projects_university", "id": "conway" }]
+      },
+      {
         "name": "Fullstack technologies",
         "id": "fullstack",
         "timeframe": "Since 2025",
@@ -112,9 +128,7 @@
         "timeframe": "Since 2025",
         "brief": "Familiar with the Agile process. I acted as scrum-master during our third year software engineering project.",
         "icon": "TM",
-        "usedIn": [
-          { "category": "projects_university", "id": "ponderr" }
-        ]
+        "usedIn": [{ "category": "projects_university", "id": "ponderr" }]
       }
     ],
     "data_ml": [
@@ -135,9 +149,12 @@
         "name": "Godot",
         "id": "godot",
         "timeframe": "Since 2023",
-        "brief": "Primary tool I use for game dev.",
+        "brief": "Engine for which I do game dev and my honours project.",
         "icon": "GODOT",
-        "usedIn": [{ "category": "projects_personal", "id": "collabyrinth" }]
+        "usedIn": [
+          { "category": "projects_personal", "id": "collabyrinth" },
+          { "category": "projects_university", "id": "LLL" }
+        ]
       },
       {
         "name": "Pixel Art Animation",
@@ -156,7 +173,10 @@
       }
     ],
     "soft": [
-      { "name": "Teamwork", "id": "teamwork", "icon": "TEAMWORK",
+      {
+        "name": "Teamwork",
+        "id": "teamwork",
+        "icon": "TEAMWORK",
         "usedIn": [
           { "category": "hackathons", "id": "suds-hackathon" },
           { "category": "hackathons", "id": "lab-hackathon" },
@@ -167,7 +187,10 @@
           { "category": "projects_university", "id": "networks" }
         ]
       },
-      { "name": "Time-management", "id": "time-management", "icon": "TM",
+      {
+        "name": "Time-management",
+        "id": "time-management",
+        "icon": "TM",
         "usedIn": [
           { "category": "hackathons", "id": "suds-hackathon" },
           { "category": "leadership-community", "id": "wildlife" },
@@ -180,19 +203,27 @@
           { "category": "projects_university", "id": "networks" },
           { "category": "projects_university", "id": "job-scheduler" },
           { "category": "projects_university", "id": "compiler" },
-          { "category": "projects_university", "id": "braille-translator" }
+          { "category": "projects_university", "id": "braille-translator" },
+          { "category": "projects_university", "id": "LLL" }
         ]
       },
-      { "name": "Adaptability", "id": "adaptability", "icon": "ADAPT",
+      {
+        "name": "Adaptability",
+        "id": "adaptability",
+        "icon": "ADAPT",
         "usedIn": [
           { "category": "hackathons", "id": "suds-hackathon" },
           { "category": "leadership-community", "id": "wildlife" },
           { "category": "leadership-community", "id": "media" },
           { "category": "creative_nontech", "id": "severed-system" },
-          { "category": "creative_nontech", "id": "erase-and-rewind" }
+          { "category": "creative_nontech", "id": "erase-and-rewind" },
+          { "category": "projects_university", "id": "LLL" }
         ]
       },
-      { "name": "Critical Thinking", "id": "critical-thinking", "icon": "CT",
+      {
+        "name": "Critical Thinking",
+        "id": "critical-thinking",
+        "icon": "CT",
         "usedIn": [
           { "category": "hackathons", "id": "suds-hackathon" },
           { "category": "creative_nontech", "id": "severed-system" },
@@ -201,19 +232,27 @@
           { "category": "projects_university", "id": "othello" },
           { "category": "projects_university", "id": "job-scheduler" },
           { "category": "projects_university", "id": "compiler" },
-          { "category": "projects_university", "id": "braille-translator" }
+          { "category": "projects_university", "id": "braille-translator" },
+          { "category": "projects_university", "id": "LLL" }
         ]
       },
-      { "name": "Resourcefulness", "id": "resourcefulness", "icon": "RESOURCE",
+      {
+        "name": "Resourcefulness",
+        "id": "resourcefulness",
+        "icon": "RESOURCE",
 
         "usedIn": [
           { "category": "hackathons", "id": "suds-hackathon" },
           { "category": "jobs", "id": "demi_project" },
           { "category": "creative_nontech", "id": "severed-system" },
-          { "category": "creative_nontech", "id": "erase-and-rewind" }
+          { "category": "creative_nontech", "id": "erase-and-rewind" },
+          { "category": "projects_university", "id": "LLL" }
         ]
       },
-      { "name": "Leadership", "id": "leadership", "icon": "LEADERSHIP",
+      {
+        "name": "Leadership",
+        "id": "leadership",
+        "icon": "LEADERSHIP",
         "usedIn": [
           { "category": "leadership-community", "id": "wildlife" },
           { "category": "leadership-community", "id": "media" },
@@ -230,14 +269,14 @@
         "name": "Computer Science 144 Head Project Demi",
         "id": "demi_project",
         "timeframe": "November 2025 - November 2026",
-        "brief": "Developing the project, its reference implementation, the specification, and test script / suite for the first year students at Stellenbosch University.",
+        "brief": "Developing the project, its reference implementation, the specification, and test script / suite for first-year students at Stellenbosch University.",
         "icon": "DEMI",
         "points": [
           {
-            "text": "At the end of 2025, I began working with Prof Lynette van Zijl and later Prof van der Merwe in developing the Computer Science 144 semester project that the first year computer science students will receive during the module in their second semester."
+            "text": "At the end of 2025, I began working with Prof. Lynette van Zijl and later Prof. van der Merwe in developing the Computer Science 144 semester project that first-year Computer Science students will receive during the module in their second semester."
           },
           {
-            "text": "The students will be required to implement a python program, the nature thereof I will share here when I am permitted. I was tasked with designing a project suitable for the skill level of first years that focused on Object Oriented Programming principles. I had to design a unique project that students could not simply download a solution for."
+            "text": "The students will be required to implement a Python program, the nature thereof I will share here when I am permitted. I was tasked with designing a project suitable for the skill level of first-years that focused on Object-Oriented Programming principles. I had to design a unique project that students could not simply download a solution for."
           },
           {
             "text": "As part of this process, I developed a full implementation of the project, called the Oracle, which acted as the true, 'correct' solution of the project. The Oracle was used to develop the test suite, so that the outputs would exactly match that of what the program was meant to generate."
@@ -255,7 +294,7 @@
             "text": "In the second semester of 2026, I will be tasked with running the project, which will entail running Q&A sessions, answering student query emails, resolving issues, and handling the project-marking (using the marking script) on a weekly basis."
           },
           {
-            "text": "Overall, this project has given me some great Software Engineering practice, as I've learned to work with clients (the professors), write a formal specification, spend a large amount of correctness testing (Both for the Oracle and the students' implementation), and conform to time constraints. It has also been the most significant engineering project that I have done with high stakes that are not just about University marks."
+            "text": "Overall, this project has given me some great Software Engineering practice, as I've learned to work with clients (the professors), write a formal specification, spend a large amount of time on correctness testing (both for the Oracle and the students' implementation), and conform to time constraints. It has also been the most significant engineering project that I have done with high stakes that are not just about University marks."
           },
           {
             "text": "I am looking forward to the latter half of the year, where I will have the honour of running this project for a couple hundred students."
@@ -266,7 +305,7 @@
         "name": "Computer Science 315 Demi",
         "id": "demi-ml",
         "timeframe": "February - June 2026",
-        "brief": "General Demi for the CS315 Machine Learning module at Stellenbosch University, where I assist students during weekly tutorials, and invigilate students during assignment tests at exams.",
+        "brief": "General demi for the CS315 Machine Learning module at Stellenbosch University, where I assist students during weekly tutorials and invigilate students during assignment tests and exams.",
         "icon": "DEMI"
       }
     ],
@@ -281,11 +320,17 @@
           {
             "text": "My mother owns and runs a preschool and aftercare from home called \"Little Explorers Aftercare and Preschool.\" For most of its lifetime, it's had a simple website written in php by my father. It was a good website, but had a few issues. Firstly, the information was completely outdated, as the services offered by Little Explorers have changed over the years. It's style is also dated. The largest issue was a lack of adaptivity, meaning that the website looked terrible on a mobile screen."
           },
-          {"text": "After my webdev course in 3rd year, I proposed to my family that I design a new website to resolve these issues, as my father didn't have the modern day skills to perform such a task. My mother is a very busy woman, so my father incrementally elicited requirements from her and put it all in basic html in the old website's php structure."},
-          {"text": "In early February, I ported all the existing code from php to Typescript with React (Using some help from chatGPT to speed things up), then worked on overhauling the CSS, adding some icons, using React Router for navigation, and most importantly, making the website adaptive."
+          {
+            "text": "After my webdev course in 3rd year, I proposed to my family that I design a new website to resolve these issues, as my father didn't have the modern day skills to perform such a task. My mother is a very busy woman, so my father incrementally elicited requirements from her and put it all in basic html in the old website's php structure."
           },
-          {"text": "After all of this, I used ftp to upload the built website via the absolutehosting service that my dad has been using to keep the website live."},
-          {"text": "Below the links, I have some comparison pictures between the old website and the new website."
+          {
+            "text": "In early February, I ported all the existing code from php to Typescript with React (Using some help from chatGPT to speed things up), then worked on overhauling the CSS, adding some icons, using React Router for navigation, and most importantly, making the website adaptive."
+          },
+          {
+            "text": "After all of this, I used ftp to upload the built website via the absolutehosting service that my dad has been using to keep the website live."
+          },
+          {
+            "text": "Below the links, I have some comparison pictures between the old website and the new website."
           },
           {
             "name": " Check out the live website",
@@ -321,10 +366,15 @@
             "src": "le/contact-new.png",
             "caption": "The new \"Contact\" screen"
           },
-          {"text": "Note, the images above don't document all changes, just some examples."
+          {
+            "text": "Note, the images above don't document all changes, just some examples."
           },
-          {"text": "In the future, should I find the time, I would also like to implement a backend for littleexplorers that will allow users of the website to send enquires and see a display of recent posts from the littleexplorers instagram and facebook accounts, and to create a database that could automate a lot of the admin my mother does manually to make her life easier."},
-          {"text":"If you have a child in the Durbanville area in need of a preschool or aftercare, Little Explorers would love to have you."}
+          {
+            "text": "In the future, should I find the time, I would also like to implement a backend for littleexplorers that will allow users of the website to send enquires and see a display of recent posts from the littleexplorers instagram and facebook accounts, and to create a database that could automate a lot of the admin my mother does manually to make her life easier."
+          },
+          {
+            "text": "If you have a child in the Durbanville area in need of a preschool or aftercare, Little Explorers would love to have you."
+          }
         ]
       },
       {
@@ -361,10 +411,46 @@
     ],
     "projects_university": [
       {
+        "name": "LEGO Instructions Animation",
+        "id": "LLL",
+        "timeframe": "2026",
+        "brief": "My honours project. A tool that takes PDF LEGO instructions and converts them to live, steppable 3D animations.",
+        "icon": "LEGO",
+        "points": [
+          {
+            "text": "I am currently working on my honours project under the supervision of Lynette van Zijl. The goal of the project is to take official LEGO instructions and do some magic to turn those instructions into 3D animations."
+          },
+          {
+            "text": "The way this has been achieved is via an intermediate language of my own design, called LLL. This language allows users to write code that describes operations over LEGO sets, like spawning parts, creating partial builds, duplicating partial builds, attaching parts, and more. This provides a user-friendly text-based way of describing instructions in a way that can be meaningfully interpreted by a graphics engine."
+          },
+          {
+            "src": "hoproj/lll.png",
+            "caption": "An example of the LLL language."
+          },
+          {
+            "text": "This language gets translated down to an intermediate representation called the LAL via a translator built in C#. The LAL is parsed into a dictionary in the Godot game engine, where GDScript processes it and produces the live animation."
+          },
+          {
+            "vid": "hoproj/clicks.webm",
+            "caption": "A video of an animation produced by the program."
+          },
+          {
+            "text": "Note that this project isn't complete, as it's my year project for 2026. In June, I will be working on tooling to convert official LEGO instructions to LLL via PDF parsing and computer vision. I will share more details on this as I go."
+          }
+        ]
+      },
+      {
+        "name": "Functional Game of Life",
+        "id": "conway",
+        "timeframe": "2026",
+        "icon": "HASKELL",
+        "brief": "Conway's Game of Life written in Haskell, abstracting the rules of Conway as an example of a binary-state cellular automaton."
+      },
+      {
         "name": "Brainscraper [Fullstack Webdev]",
         "id": "brainscraper",
         "timeframe": "2025",
-        "brief": "A Kahoot-like online multiplayer trivia game with websockets for real-time syncronization, full JWT + Refresh token Authentication, and some suspenseful music to keep the excitement going",
+        "brief": "A Kahoot-like online multiplayer trivia game with WebSockets for real-time synchronization, full JWT + refresh-token authentication, and some suspenseful music to keep the excitement going.",
         "icon": "TS"
       },
       {
@@ -463,7 +549,9 @@
             "src": "maroonut/home.png",
             "caption": "When you first arrive at maroonut, you will land on the home page, detailing the purpose and functionality of the service."
           },
-          { "text": "Maroonut uses React Router, so you can bookmark any page and share links to certain modules directly." },
+          {
+            "text": "Maroonut uses React Router, so you can bookmark any page and share links to certain modules directly."
+          },
           {
             "src": "maroonut/login.png",
             "caption": "You can log in to your own account, which allows you to view modules, post reviews on modules you've already completed, and even advertise yourself as a tutor for specific modules."
@@ -506,7 +594,7 @@
         "name": "Investec Tech Scholarship Mentorship",
         "id": "investec",
         "timeframe": "2024-present",
-        "brief": "At the end of my first year I was awarded a full cost scholarship with Investec which has funded me since my second year. After my honours, I will then be able to go work for them. During the scholarship I have networked with many people at the company and have learned a lot about industry from them.",
+        "brief": "At the end of my first year, I was awarded a full-cost scholarship with Investec, which has funded me since my second year. After my honours, I will then be able to go and work for them. During the scholarship, I have networked with many people at the company and have learned a lot about the industry from them.",
         "icon": "INVEST"
       }
     ],
@@ -529,7 +617,7 @@
         "name": "Co-writer and Director of a One Act Play at Fairmont High",
         "id": "erase-and-rewind",
         "timeframe": "2022",
-        "brief": "I co-wrote and directed a 20-minute comedy play called 'Erase and Rewind' about a man who goes back in time to have reverse-hand-dryers removed from his childhood school, to prevent his life from being ruined. During his adventure, he loses his time machine, which appears like a tv remote. Two children find it and cause chaos with it, like pausing time, changing the languages of their friends, and reversing time. We won a silver award for it at a ceremony called 'Silwervaring Kunstefees.'",
+        "brief": "I co-wrote and directed a 20-minute comedy play called 'Erase and Rewind' about a man who goes back in time to have reverse-hand-dryers removed from his childhood school to prevent his life from being ruined. During his adventure, he loses his time machine, which appears as a TV remote. Two children find it and cause chaos with it, like pausing time, changing the languages of their friends, and reversing time. We won a silver award for it at a ceremony called 'Silwervaring Kunstefees.'",
         "icon": "ART"
       }
     ],
@@ -552,7 +640,7 @@
         "name": "Chairperson of Media Appreciation Society at Fairmont High",
         "id": "media",
         "timeframe": "2021",
-        "brief": "My main endeavor in this role was to put together a video to promote the society. I was the society's first chairperson after it was born through the merging of multiple other societies, including the grapevine, a school magazine that I wrote for 4 times a year.",
+        "brief": "My main endeavor in this role was to put together a video to promote the society. I was the society's first chairperson after it was formed through the merging of multiple other societies, including The Grapevine, a school magazine that I wrote for four times a year.",
         "icon": "MEDIA"
       }
     ]

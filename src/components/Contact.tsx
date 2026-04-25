@@ -1,18 +1,18 @@
 import "./Bodies.css";
 import { FaEnvelope, FaPhone, FaWhatsapp } from "react-icons/fa";
 /**
- * The home component for the Dylan Reid Personal website.
+ * The Contact component for the Dylan Reid personal website.
  *
  * @component
  *
- * @returns {JSX.Element} The rendered header component.
+ * @returns {JSX.Element} The rendered Contact component.
  */
 export default function Contact() {
   return (
     <>
       <h1 className="sectionHeading">
+        <FaPhone className="bigIcon" />
         Get In Touch
-        <FaEnvelope />
       </h1>
 
       <a
@@ -22,7 +22,7 @@ export default function Contact() {
         rel="noreferrer"
       >
         <FaWhatsapp />
-        WhatsApp me (Preferred)
+        WhatsApp me (preferred)
       </a>
       <a className="outerButton" href="mailto:ddylanrreid@gmail.com">
         <FaEnvelope />
