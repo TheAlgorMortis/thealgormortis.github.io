@@ -318,16 +318,16 @@
         "icon": "TS",
         "points": [
           {
-            "text": "My mother owns and runs a preschool and aftercare from home called \"Little Explorers Aftercare and Preschool.\" For most of its lifetime, it's had a simple website written in php by my father. It was a good website, but had a few issues. Firstly, the information was completely outdated, as the services offered by Little Explorers have changed over the years. It's style is also dated. The largest issue was a lack of adaptivity, meaning that the website looked terrible on a mobile screen."
+            "text": "My mother owns and runs a preschool and aftercare from home called \"Little Explorers Aftercare and Preschool.\" For most of its lifetime, it's had a simple website written in PHP by my father. It was a good website, but had a few issues. Firstly, the information was completely outdated, as the services offered by Little Explorers have changed over the years. Its style is also dated. The largest issue was a lack of adaptivity, meaning that the website looked terrible on a mobile screen."
           },
           {
-            "text": "After my webdev course in 3rd year, I proposed to my family that I design a new website to resolve these issues, as my father didn't have the modern day skills to perform such a task. My mother is a very busy woman, so my father incrementally elicited requirements from her and put it all in basic html in the old website's php structure."
+            "text": "After my webdev course in 3rd year, I proposed to my family that I design a new website to resolve these issues, as my father didn't have the modern-day skills to perform such a task. My mother is a very busy woman, so my father incrementally elicited requirements from her and put it all in basic HTML in the old website's PHP structure."
           },
           {
-            "text": "In early February, I ported all the existing code from php to Typescript with React (Using some help from chatGPT to speed things up), then worked on overhauling the CSS, adding some icons, using React Router for navigation, and most importantly, making the website adaptive."
+            "text": "In early February, I ported all the existing code from PHP to TypeScript with React (Using some help from ChatGPT to speed things up), then worked on overhauling the CSS, adding some icons, using React Router for navigation, and most importantly, making the website adaptive."
           },
           {
-            "text": "After all of this, I used ftp to upload the built website via the absolutehosting service that my dad has been using to keep the website live."
+            "text": "After all of this, I used FTP to upload the built website via the absolutehosting service that my dad has been using to keep the website live."
           },
           {
             "text": "Below the links, I have some comparison pictures between the old website and the new website."
@@ -338,7 +338,7 @@
             "icon": "TS"
           },
           {
-            "name": " Check it out on Github",
+            "name": " Check it out on GitHub",
             "link": "https://github.com/TheAlgorMortis/littleexplorers",
             "icon": "GIT"
           },
@@ -370,7 +370,7 @@
             "text": "Note, the images above don't document all changes, just some examples."
           },
           {
-            "text": "In the future, should I find the time, I would also like to implement a backend for littleexplorers that will allow users of the website to send enquires and see a display of recent posts from the littleexplorers instagram and facebook accounts, and to create a database that could automate a lot of the admin my mother does manually to make her life easier."
+            "text": "In the future, should I find the time, I would also like to implement a backend for Little Explorers that will allow users of the website to send enquiries and see a display of recent posts from the Little Explorers Instagram and Facebook accounts, and to create a database that could automate a lot of the admin my mother does manually to make her life easier."
           },
           {
             "text": "If you have a child in the Durbanville area in need of a preschool or aftercare, Little Explorers would love to have you."
@@ -402,7 +402,7 @@
             "text": "Collabyrinth is a continuous passion-project that I incrementally develop to hone my skills in game-development before I tackle my first ambitious long-term project."
           },
           {
-            "name": " Check it out on Github",
+            "name": " Check it out on GitHub",
             "link": "https://github.com/TheAlgorMortis/Collabyrinth",
             "icon": "GODOT"
           }
@@ -468,10 +468,10 @@
         "icon": "BRAIN"
       },
       {
-        "name": "Personal Website with Typescript and React",
+        "name": "Personal Website with TypeScript and React",
         "id": "this-is-pretty-meta",
         "timeframe": "2025 - present",
-        "brief": "This is the website you're looking at now. Originally implemented in Javascript, it has since been adapted to typescript and improved in many ways.",
+        "brief": "This is the website you're looking at now. Originally implemented in JavaScript, it has since been adapted to TypeScript and improved in many ways.",
         "icon": "TS"
       },
       {
@@ -492,7 +492,7 @@
         "name": "Job Scheduler",
         "id": "job-scheduler",
         "timeframe": "2025",
-        "brief": "In C using openMP.",
+        "brief": "In C using OpenMP.",
         "icon": "C"
       },
       {
@@ -533,10 +533,10 @@
         "icon": "NUT",
         "points": [
           {
-            "text": "Dylan Swarts and I participated against 7 other teams in the SUDS Hackathon of 2025. The theme was to build something that would improve student life. Swarts and I (as a team called \"Dylan Squared\" since we are both called Dylan) developed a full-stack system called \" Maroonut\", a digitized version of the Stellenbosch University's Faculty yearbook. We built this system over a 38 hour period from Friday, 3 October at 20:00 (Right after writing a 3rd year maths exam) to Sunday, 5 October at 10:00. The full implementation and detailed README can be found at Github via the link below."
+            "text": "Dylan Swarts and I participated against 7 other teams in the SUDS Hackathon of 2025. The theme was to build something that would improve student life. Swarts and I (as a team called \"Dylan Squared\" since we are both called Dylan) developed a full-stack system called \" Maroonut\", a digitized version of the Stellenbosch University's Faculty yearbook. We built this system over a 38-hour period from Friday, 3 October at 20:00 (Right after writing a 3rd year maths exam) to Sunday, 5 October at 10:00. The full implementation and detailed README can be found on GitHub via the link below."
           },
           {
-            "name": "Check out Maroonut on Github",
+            "name": "Check out Maroonut on GitHub",
             "link": "https://github.com/TheAlgorMortis/suds-hackathon-2025",
             "icon": "GIT"
           },
@@ -565,11 +565,11 @@
           },
           {
             "src": "maroonut/module.png",
-            "caption": "Every module has a dedicated page with the module's framework, lecture and tutorial hours, and the module's pre- and corequistes, which also act as buttons to direct you to those modules. The module rating is based off of an average of all reviewer's ratings of the module."
+            "caption": "Every module has a dedicated page with the module's framework, lecture and tutorial hours, and the module's pre- and corequisites, which also act as buttons to direct you to those modules. The module rating is based off of an average of all reviewers' ratings of the module."
           },
           {
             "src": "maroonut/reviews.png",
-            "caption": "Scrolling further down, you can view reviews for the module by people who have taken it in the past. This allows you to guage more about the module than a module framework allows, as you hear students' real world experience with the module to better advise you. If you've passed a module, you can give your own review on it, and rate it by clicking on the stars. Users can also gift and revoke 'acorns' to and from the review. Reviews are sorted descendingly by acorns so that the best reviews stay at the top."
+            "caption": "Scrolling further down, you can view reviews for the module by people who have taken it in the past. This allows you to gauge more about the module than a module framework allows, as you hear students' real-world experience with the module to better advise you. If you've passed a module, you can give your own review on it, and rate it by clicking on the stars. Users can also gift and revoke 'acorns' to and from the review. Reviews are sorted in descending order by acorns so that the best reviews stay at the top."
           },
           {
             "src": "maroonut/tutors.png",

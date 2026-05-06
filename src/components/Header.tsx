@@ -275,7 +275,7 @@ function NavArea({ onNavigate }: { onNavigate?: () => void }) {
           rel="noopener noreferrer"
         >
           <FaGithub />
-          Github
+          GitHub
         </a>
         <a
           className="navLink"
@@ -284,7 +284,7 @@ function NavArea({ onNavigate }: { onNavigate?: () => void }) {
           rel="noopener noreferrer"
         >
           <FaLinkedin />
-          Linkedin
+          LinkedIn
         </a>
       </nav>
     </div>

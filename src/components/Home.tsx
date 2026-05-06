@@ -34,7 +34,7 @@ export default function Home() {
               I am a passionate creator, whether it be through developing
               software, writing novels, or producing video games. I am
               constantly learning new skills, which I intend to use with my
-              out-of-the-box thinking to solve real world problems. I strive to
+              out-of-the-box thinking to solve real-world problems. I strive to
               create media and tools that will aid or entertain others. I am
               enthusiastic, buoyant, and optimistic, with relentless
               determination and ambition. I am reliable and responsible, and I

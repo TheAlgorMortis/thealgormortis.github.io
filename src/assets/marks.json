@@ -1,6 +1,6 @@
 {"year1sem1":
 	[{"id": 0, "name": "CompSci 114 (Introductory)", "mark": "89%", "icon":"CS1"},
-	 {"id": 1, "name": "Maths 114 (Prealc and Calc I)", "mark": "87%", "icon":"M"},
+	 {"id": 1, "name": "Maths 114 (Precalc and Calc I)", "mark": "87%", "icon":"M"},
 	 {"id": 2, "name": "Probability Theory and Statistics", "mark": "91%", "icon":"PTS"},
 	 {"id": 3, "name": "Physics 114", "mark": "81%", "icon":"PHY"}],
  "year1sem2":
@@ -8,7 +8,7 @@
 	 {"id": 6, "name": "Maths 144 (Calc II and Linear algebra)", "mark": "91%", "icon":"M"},
 	 {"id": 7, "name": "Data Science 141", "mark": "87%", "icon":"DS1"},
 	 {"id": 8, "name": "Applied Maths 144 (Vectors and Mechanics)", "mark": "73%","icon":"AM1"},
-	 {"id": 9, "name": "Science in context 178", "mark": "84%", "icon":"SIC"}],
+	 {"id": 9, "name": "Science in Context 178", "mark": "84%", "icon":"SIC"}],
 "year2sem1":
 	[{"id": 10, "name": "CompSci 214 (Data structures / algorithms)", "mark": "84%", "icon":"DSA"},
 	 {"id": 11, "name": "Maths 214 (Calc III and Linear Algebra)", "mark": "93%", "icon":"M"},
@@ -40,7 +40,7 @@
 	{"id":45, "name": "792: Computer Vision", "mark": "TBC", "icon":"CV"}],
 "NSC":
 	[{"id": 101, "name": "English Home Language", "mark": "89%","icon":"ENG"},
-	 {"id": 102, "name": "Afrikaans First Additional language", "mark": "86%","icon":"AFR"},
+	 {"id": 102, "name": "Afrikaans First Additional Language", "mark": "86%","icon":"AFR"},
 	 {"id": 103, "name": "Mathematics", "mark": "85%","icon":"PRE"},
 	 {"id": 104, "name": "Life Orientation", "mark": "83%","icon":"LO"},
 	 {"id": 105, "name": "Information Technology", "mark": "95%","icon":"IT"},
